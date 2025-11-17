@@ -6,12 +6,31 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     h1 { color: #214a80; }
+    h2 { margin-top: 32px; color: #157347; }
     section { margin-bottom: 32px; }
-    img { max-width: 700px; margin: 15px; border: 2px solid #eee; border-radius: 7px; }
-    .galeria { display: flex; flex-wrap: wrap; gap: 20px; }
-    .img-block { text-align: center; }
-    .img-block p { margin-top: 8px; color: #333;}
-    h2 { margin-top: 48px; color: #157347; }
+    .galeria {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .img-block {
+      width: 100%;
+      text-align: center;
+    }
+    img {
+      max-width: 800px;
+      width: 100%;
+      height: auto;
+      border: 2px solid #eee;
+      border-radius: 7px;
+      box-shadow: 0 4px 18px #0001;
+    }
+    .img-block p {
+      margin-top: 8px;
+      color: #333;
+      font-size: 1.15em;
+    }
   </style>
 </head>
 <body>
@@ -33,7 +52,6 @@
       </div>
     </div>
   </section>
-  <!-- Subtítulo después de las imágenes -->
   <h2>KEY PERFORMANCE QUESTIONS</h2>
 </body>
 </html>
