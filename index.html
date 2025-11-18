@@ -2,48 +2,126 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Proyecto Presentación</title>
+  <title>Business Case - Gold Coffee Exports SAC</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    h1 { color: #214a80; }
-    h2 { margin-top: 32px; color: #157347; }
-    section { margin-bottom: 32px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 40px; 
+      line-height: 1.6; 
+    }
+
+    /* TÍTULO PRINCIPAL */
+    h1 {
+      color: #214a80;
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    /* SUBTÍTULO */
+    h2 {
+      color: #157347;
+      font-size: 24px;
+      margin-top: 0px;
+      margin-bottom: 25px;
+    }
+
+    /* Subtítulos de las imágenes (subrayados, sin negrita) */
+    .titulo-sub {
+      text-decoration: underline;
+      font-weight: normal;
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* Sección de imágenes */
     .galeria {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
+      gap: 40px;
     }
+
     .img-block {
       width: 100%;
       text-align: center;
     }
+
     img {
-      max-width: 800px;
+      max-width: 900px;
       width: 100%;
       height: auto;
       border: 2px solid #eee;
       border-radius: 7px;
       box-shadow: 0 4px 18px #0001;
     }
+
+    p { margin-bottom: 18px; }
   </style>
 </head>
+
 <body>
-  <h1>Mi Proyecto: Presentación de Imágenes</h1>
-  <section>
-    <h2>Parte 1</h2>
-    <div class="galeria">
-      <div class="img-block">
-        <img src="images/parte1/imagen01.jpg" alt="">
-      </div>
-      <div class="img-block">
-        <img src="images/parte1/imagen02.jpg" alt="">
-      </div>
-      <div class="img-block">
-        <img src="images/parte1/imagen03.jpg" alt="">
-      </div>
+
+  <!-- TÍTULO PRINCIPAL -->
+  <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
+
+  <!-- SUBTÍTULO -->
+  <h2>Capa de presentación</h2>
+
+  <!-- TEXTO COMPLETO -->
+  <p>
+    La capa de presentación constituye la fase final de la información procesada del Business Case de la empresa 
+    <strong>Gold Coffee Export SAC</strong>, donde la información se transforma en conocimiento accionable listo
+    para la toma de decisiones. Esta capa utiliza herramientas de visualización avanzadas, como Power BI y Microsoft 
+    Fabric, para convertir los datos en un recurso estratégico y operativo de alto valor, sintetizando mediante 
+    interfaces intuitivas y análisis visual para generar un impacto directo en impacto en la toma de decisiones. 
+    La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo 
+    un modelo de datos robusto. Sus principales componentes son: 
+    • Business Case: Se desarrolla el objetivo, la estrategia y costo beneficio 
+    • Definición del KPI (Key Performance Indicator): Incluye la definición precisa, la fórmula de cálculo y sus características esenciales 
+    • Dashboard: Vista integral del KPI 
+    • Reporte del KPI: Proporciona un análisis del KPI en un periodo de tiempo específico. En este caso, se proyecta la visualización histórica y tendencial desde Junio de 2025 hasta Mayo de 2027. 
+    • KPQ (Key Performance Questions): Desarrollo de reportes analíticos que responden a las preguntas clave de rendimiento
+  </p>
+
+
+  <!-- SUBTÍTULO DEL SUBTÍTULO (SECCIÓN DE IMÁGENES) -->
+  <h2>Presentación Visual</h2>
+
+  <div class="galeria">
+
+    <!-- HOJA DE PRESENTACIÓN -->
+    <h3 class="titulo-sub">HOJA DE PRESENTACIÓN</h3>
+    <div class="img-block">
+      <img src="images/parte1/imagen01.jpg" alt="Hoja de presentación">
     </div>
-  </section>
-  <h2>KEY PERFORMANCE QUESTIONS</h2>
+
+    <!-- BUSINESS CASE -->
+    <h3 class="titulo-sub">BUSINESS CASE</h3>
+    <div class="img-block">
+      <img src="images/parte1/imagen02.jpg" alt="Business Case">
+    </div>
+
+    <!-- DEFINICIÓN DEL KPI -->
+    <h3 class="titulo-sub">DEFINICIÓN DEL KPI (KEY PERFORMANCE INDICATOR)</h3>
+    <div class="img-block">
+      <img src="images/parte1/imagen03.jpg" alt="Definición KPI">
+    </div>
+
+    <!-- DASHBOARD -->
+    <h3 class="titulo-sub">DASHBOARD</h3>
+    <div class="img-block">
+      <img src="images/parte1/imagen04.jpg" alt="Dashboard">
+    </div>
+
+    <!-- REPORTE DEL KPI -->
+    <h3 class="titulo-sub">REPORTE DEL KPI</h3>
+    <div class="img-block">
+      <img src="images/parte1/imagen05.jpg" alt="Reporte KPI">
+    </div>
+
+  </div>
+
 </body>
 </html>
