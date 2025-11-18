@@ -76,6 +76,30 @@
   <!-- TÍTULO PRINCIPAL -->
   <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
 
+   <!-- Capa ETL -->
+  <h2>Capa ETL</h2>
+  <p>
+    La Capa ETL comprende la documentación relacionada con los <strong>dataflows</strong> creados, los pipelines y la automatización en Python.
+  </p>
+  <p>
+    La <strong>data Pipeline</strong> en ETL se ejecuta en los siguientes pasos:
+  </p>
+  <ol>
+    <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes (como bases de datos, archivos CSV, o APIs).</li>
+    <li><strong>Transform (Transformación):</strong> Los datos son procesados, limpiados, y transformados a un formato adecuado para el análisis (como convertir fechas, corregir valores nulos, hacer agregaciones, etc.).</li>
+    <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en un repositorio de destino, como un Data Warehouse, una base de datos analítica, o una plataforma de análisis.</li>
+  </ol>
+
+  <h3 class="titulo-sub">Dataflows:</h3>
+  <p>
+    Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
+  </p>
+
+  <h3 class="titulo-sub">Pipelines y automatización:</h3>
+  <p>
+    Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Estos pipelines están diseñados para integrarse con el entorno de Microsoft Fabric, garantizando la actualización constante y la correcta transferencia de los datos.
+  </p>
+  
   <!-- CAPA DE ALMACENAMIENTO -->
   <h2>Capa de almacenamiento</h2>
   <p>
