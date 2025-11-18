@@ -75,6 +75,50 @@
   <!-- TÍTULO PRINCIPAL -->
   <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
 
+  <!-- CAPA DE ALMACENAMIENTO -->
+<h2>Capa de almacenamiento</h2>
+
+<p>
+  La capa de almacenamiento constituye sobre la documentación del modelo de datos y las medidas creadas en el modelo a fin de conllevar a la elaboración de los reportes.
+</p>
+
+<!-- Subtítulo Modelo de Datos -->
+<h3 class="titulo-sub">Modelo de datos</h3>
+<p>
+  Un modelo de datos es una representación donde se observa las relaciones entre tablas de datos para que puedan ser utilizados como guía de cómo se deben manejar los datos de manera coherente y eficiente.
+</p>
+
+<!-- Subtítulo Medidas Calculadas -->
+<h3 class="titulo-sub">Medidas calculadas</h3>
+<ul>
+  <li>% TOTAL_FACTURADO_MoM = DIVIDE([Total_Facturado]-[TOTAL_FACTURADO_PM],[TOTAL_FACTURADO_PM])</li>
+  <li>CANT_VENTAS_2025 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2025)</li>
+  <li>Cantidad de Toneladas 2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+  <li>CantPedidos = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]))</li>
+  <li>CantPedidos 2024 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2024)</li>
+  <li>EXPORT MENSUAL = SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom])</li>
+  <li>export mensual 2025 = CALCULATE(SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom]),Calendario[año]=2025)</li>
+  <li>KPI = [Total_Facturado]/[EXPORT MENSUAL]</li>
+  <li>KPI 2025 = [Total_Facturado_2025]/[export mensual 2025]</li>
+  <li>KPI OBJETIVO = 0.39</li>
+  <li>KPI_2023 = CALCULATE([KPI],Calendario[año]=2023)</li>
+  <li>KPI_2024 = CALCULATE([KPI],Calendario[año]=2024)</li>
+  <li>Meta_Anual 2025 = 283624000</li>
+  <li>Promedio de CantPedidos 2024 por razon_social_nombre = AVERAGEX(KEEPMFILTERS(VALUES('DVG4 tb_clientes1'[razon_social_nombre])), CALCULATE([CantPedidos 2024]))</li>
+  <li>Promedio de CantPedidos por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])),CALCULATE([CantPedidos]))</li>
+  <li>Promedio de KPI 2025 por ciudad_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_clientes1'[ciudad_nombre])), CALCULATE([KPI 2025]))</li>
+  <li>Promedio de KPI 2025 por pais_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_paises1'[pais_nombre])), CALCULATE([KPI 2025]))</li>
+  <li>Promedio de KPI por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])), CALCULATE([KPI]))</li>
+  <li>Promedio de KPI por Mes = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Mes])), CALCULATE([KPI]))</li>
+  <li>Promedio de KPI_2024 por tipo_cliente_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_tipo_cliente1'[tipo_cliente_nombre])), CALCULATE([KPI_2024]))</li>
+  <li>Promedio de Total_Facturado_2025 por prov_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_proveedor_envio1'[prov_nombre])), CALCULATE([Total_Facturado_2025]))</li>
+  <li>Total_Facturado = SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado])</li>
+  <li>Total_Facturado_2024 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2024)</li>
+  <li>Total_Facturado_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2025)</li>
+  <li>TOTAL_FACTURADO_PM = CALCULATE([Total_Facturado],DATEADD(Calendario[x. fechas],-1,MONTH))</li>
+  <li>TOTAL_TONELADAS_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+</ul>
+  
   <!-- SUBTÍTULO -->
   <h2>Capa de presentación</h2>
 
