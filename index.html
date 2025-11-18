@@ -17,7 +17,7 @@
       margin-bottom: 5px;
     }
 
-    /* SUBTÍTULO */
+    /* SUBTÍTULO SECCIÓN */
     h2 {
       color: #157347;
       font-size: 24px;
@@ -25,36 +25,30 @@
       margin-bottom: 25px;
     }
 
-    /* Subtítulos de las imágenes (subrayados, sin negrita) */
+    /* Subtítulos de secciones e imágenes (alineados a la izquierda y capitalize) */
     .titulo-sub {
       text-decoration: underline;
       font-weight: normal;
       font-size: 22px;
       margin-top: 5px;
-      margin-bottom: 2px;
-      text-align: center;
+      margin-bottom: 8px;
+      text-align: left;          /* alineado a la izquierda */
+      text-transform: capitalize; /* solo primera letra en mayúscula */
     }
 
-    /* Sección de imágenes */
-    .galeria {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
+    /* Subtítulos de KPQ */
+    .kpq-subtitulo {
+      text-align: left;       /* subtítulo a la izquierda */
+      font-size: 16px;        /* letra más pequeña */
+      font-weight: normal;    /* sin negrita */
+      text-transform: none;   /* sin mayúscula automática */
+      margin: 10px 0 3px 0;   /* espacio arriba y abajo pequeño */
     }
-<style>
-/* Subtítulos de KPQ */
-.kpq-subtitulo {
-  text-align: left;       /* subtítulo a la izquierda */
-  font-size: 16px;        /* letra más pequeña */
-  font-weight: normal;    /* sin negrita */
-  text-transform: none;   /* sin mayúscula automática */
-  margin: 10px 0 3px 0;   /* espacio arriba y abajo pequeño */
-}
 
     .img-block {
       width: 100%;
       text-align: center;
+      margin-bottom: 30px;
     }
 
     img {
@@ -67,6 +61,13 @@
     }
 
     p { margin-bottom: 18px; }
+
+    .galeria {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* alinea todo a la izquierda */
+      gap: 40px;
+    }
   </style>
 </head>
 
@@ -76,203 +77,202 @@
   <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
 
   <!-- CAPA DE ALMACENAMIENTO -->
-<h2>Capa de almacenamiento</h2>
+  <h2>Capa de almacenamiento</h2>
+  <p>
+    La capa de almacenamiento constituye sobre la documentación del modelo de datos y las medidas creadas en el modelo a fin de conllevar a la elaboración de los reportes.
+  </p>
 
-<p>
-  La capa de almacenamiento constituye sobre la documentación del modelo de datos y las medidas creadas en el modelo a fin de conllevar a la elaboración de los reportes.
-</p>
+  <!-- Subtítulo Modelo de Datos -->
+  <h3 class="titulo-sub">Modelo de datos</h3>
+  <p>
+    Un modelo de datos es una representación donde se observa las relaciones entre tablas de datos para que puedan ser utilizados como guía de cómo se deben manejar los datos de manera coherente y eficiente.
+  </p>
 
-<!-- Subtítulo Modelo de Datos -->
-<h3 class="titulo-sub">Modelo de datos</h3>
-<p>
-  Un modelo de datos es una representación donde se observa las relaciones entre tablas de datos para que puedan ser utilizados como guía de cómo se deben manejar los datos de manera coherente y eficiente.
-</p>
+  <div class="img-block">
+    <img src="modelo.jpg" alt="modelo de datos">
+  </div>
 
-   <div class="img-block">
-  <img src="modelo.jpg" alt="modelo de datos">
-</div>
-<!-- Subtítulo Medidas Calculadas -->
-<h3 class="titulo-sub">Medidas calculadas</h3>
-<ul>
-  <li>% TOTAL_FACTURADO_MoM = DIVIDE([Total_Facturado]-[TOTAL_FACTURADO_PM],[TOTAL_FACTURADO_PM])</li>
-  <li>CANT_VENTAS_2025 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2025)</li>
-  <li>Cantidad de Toneladas 2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
-  <li>CantPedidos = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]))</li>
-  <li>CantPedidos 2024 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2024)</li>
-  <li>EXPORT MENSUAL = SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom])</li>
-  <li>export mensual 2025 = CALCULATE(SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom]),Calendario[año]=2025)</li>
-  <li>KPI = [Total_Facturado]/[EXPORT MENSUAL]</li>
-  <li>KPI 2025 = [Total_Facturado_2025]/[export mensual 2025]</li>
-  <li>KPI OBJETIVO = 0.39</li>
-  <li>KPI_2023 = CALCULATE([KPI],Calendario[año]=2023)</li>
-  <li>KPI_2024 = CALCULATE([KPI],Calendario[año]=2024)</li>
-  <li>Meta_Anual 2025 = 283624000</li>
-  <li>Promedio de CantPedidos 2024 por razon_social_nombre = AVERAGEX(KEEPMFILTERS(VALUES('DVG4 tb_clientes1'[razon_social_nombre])), CALCULATE([CantPedidos 2024]))</li>
-  <li>Promedio de CantPedidos por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])),CALCULATE([CantPedidos]))</li>
-  <li>Promedio de KPI 2025 por ciudad_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_clientes1'[ciudad_nombre])), CALCULATE([KPI 2025]))</li>
-  <li>Promedio de KPI 2025 por pais_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_paises1'[pais_nombre])), CALCULATE([KPI 2025]))</li>
-  <li>Promedio de KPI por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])), CALCULATE([KPI]))</li>
-  <li>Promedio de KPI por Mes = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Mes])), CALCULATE([KPI]))</li>
-  <li>Promedio de KPI_2024 por tipo_cliente_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_tipo_cliente1'[tipo_cliente_nombre])), CALCULATE([KPI_2024]))</li>
-  <li>Promedio de Total_Facturado_2025 por prov_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_proveedor_envio1'[prov_nombre])), CALCULATE([Total_Facturado_2025]))</li>
-  <li>Total_Facturado = SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado])</li>
-  <li>Total_Facturado_2024 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2024)</li>
-  <li>Total_Facturado_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2025)</li>
-  <li>TOTAL_FACTURADO_PM = CALCULATE([Total_Facturado],DATEADD(Calendario[x. fechas],-1,MONTH))</li>
-  <li>TOTAL_TONELADAS_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
-</ul>
-  
+  <!-- Subtítulo Medidas Calculadas -->
+  <h3 class="titulo-sub">Medidas calculadas</h3>
+  <ul>
+    <li>% TOTAL_FACTURADO_MoM = DIVIDE([Total_Facturado]-[TOTAL_FACTURADO_PM],[TOTAL_FACTURADO_PM])</li>
+    <li>CANT_VENTAS_2025 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2025)</li>
+    <li>Cantidad de Toneladas 2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+    <li>CantPedidos = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]))</li>
+    <li>CantPedidos 2024 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2024)</li>
+    <li>EXPORT MENSUAL = SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom])</li>
+    <li>export mensual 2025 = CALCULATE(SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom]),Calendario[año]=2025)</li>
+    <li>KPI = [Total_Facturado]/[EXPORT MENSUAL]</li>
+    <li>KPI 2025 = [Total_Facturado_2025]/[export mensual 2025]</li>
+    <li>KPI OBJETIVO = 0.39</li>
+    <li>KPI_2023 = CALCULATE([KPI],Calendario[año]=2023)</li>
+    <li>KPI_2024 = CALCULATE([KPI],Calendario[año]=2024)</li>
+    <li>Meta_Anual 2025 = 283624000</li>
+    <li>Promedio de CantPedidos 2024 por razon_social_nombre = AVERAGEX(KEEPMFILTERS(VALUES('DVG4 tb_clientes1'[razon_social_nombre])), CALCULATE([CantPedidos 2024]))</li>
+    <li>Promedio de CantPedidos por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])),CALCULATE([CantPedidos]))</li>
+    <li>Promedio de KPI 2025 por ciudad_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_clientes1'[ciudad_nombre])), CALCULATE([KPI 2025]))</li>
+    <li>Promedio de KPI 2025 por pais_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_paises1'[pais_nombre])), CALCULATE([KPI 2025]))</li>
+    <li>Promedio de KPI por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])), CALCULATE([KPI]))</li>
+    <li>Promedio de KPI por Mes = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Mes])), CALCULATE([KPI]))</li>
+    <li>Promedio de KPI_2024 por tipo_cliente_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_tipo_cliente1'[tipo_cliente_nombre])), CALCULATE([KPI_2024]))</li>
+    <li>Promedio de Total_Facturado_2025 por prov_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_proveedor_envio1'[prov_nombre])), CALCULATE([Total_Facturado_2025]))</li>
+    <li>Total_Facturado = SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado])</li>
+    <li>Total_Facturado_2024 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2024)</li>
+    <li>Total_Facturado_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2025)</li>
+    <li>TOTAL_FACTURADO_PM = CALCULATE([Total_Facturado],DATEADD(Calendario[x. fechas],-1,MONTH))</li>
+    <li>TOTAL_TONELADAS_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+  </ul>
+
   <!-- SUBTÍTULO -->
   <h2>Capa de presentación</h2>
 
- <!-- TEXTO COMPLETO CORREGIDO -->
-<p>
-  La capa de presentación constituye la fase final de la información procesada del Business Case de la empresa 
-  <strong>Gold Coffee Export SAC</strong>, donde la información se transforma en conocimiento accionable listo 
-  para la toma de decisiones.
-</p>
+  <p>
+    La capa de presentación constituye la fase final de la información procesada del Business Case de la empresa 
+    <strong>Gold Coffee Export SAC</strong>, donde la información se transforma en conocimiento accionable listo 
+    para la toma de decisiones.
+  </p>
 
-<p>
-  Esta capa utiliza herramientas de visualización avanzadas, como Power BI y Microsoft Fabric, para convertir los 
-  datos en un recurso estratégico y operativo de alto valor, sintetizando mediante interfaces intuitivas y análisis 
-  visual para generar un impacto directo en la toma de decisiones.
-</p>
+  <p>
+    Esta capa utiliza herramientas de visualización avanzadas, como Power BI y Microsoft Fabric, para convertir los 
+    datos en un recurso estratégico y operativo de alto valor, sintetizando mediante interfaces intuitivas y análisis 
+    visual para generar un impacto directo en la toma de decisiones.
+  </p>
 
-<p>
-  La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo 
-  un modelo de datos robusto. Sus principales componentes son:
-</p>
+  <p>
+    La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo 
+    un modelo de datos robusto. Sus principales componentes son:
+  </p>
 
-<ul>
-  <li><strong>Business Case:</strong> Se desarrolla el objetivo, la estrategia y costo beneficio.</li>
-  <li><strong>Definición del KPI (Key Performance Indicator):</strong> Incluye la definición precisa, la fórmula de cálculo y sus características esenciales.</li>
-  <li><strong>Dashboard:</strong> Vista integral del KPI.</li>
-  <li><strong>Reporte del KPI:</strong> Proporciona un análisis del KPI en un periodo de tiempo específico. En este caso, se proyecta la visualización histórica y tendencial desde Junio de 2025 hasta Mayo de 2027.</li>
-  <li><strong>KPQ (Key Performance Questions):</strong> Desarrollo de reportes analíticos que responden a las preguntas clave de rendimiento.</li>
-</ul>
+  <ul>
+    <li><strong>Business Case:</strong> Se desarrolla el objetivo, la estrategia y costo beneficio.</li>
+    <li><strong>Definición del KPI (Key Performance Indicator):</strong> Incluye la definición precisa, la fórmula de cálculo y sus características esenciales.</li>
+    <li><strong>Dashboard:</strong> Vista integral del KPI.</li>
+    <li><strong>Reporte del KPI:</strong> Proporciona un análisis del KPI en un periodo de tiempo específico. En este caso, se proyecta la visualización histórica y tendencial desde Junio de 2025 hasta Mayo de 2027.</li>
+    <li><strong>KPQ (Key Performance Questions):</strong> Desarrollo de reportes analíticos que responden a las preguntas clave de rendimiento.</li>
+  </ul>
 
   <div class="galeria">
-    <!-- HOJA DE PRESENTACIÓN -->
-    <h3 class="titulo-sub">HOJA DE PRESENTACIÓN</h3>
+    <h3 class="titulo-sub">Hoja de presentación</h3>
     <div class="img-block">
       <img src="parte1/imagen01.jpg" alt="Hoja de presentación">
     </div>
-    <!-- BUSINESS CASE -->
-    <h3 class="titulo-sub">BUSINESS CASE</h3>
+
+    <h3 class="titulo-sub">Business case</h3>
     <div class="img-block">
       <img src="parte1/imagen02.jpg" alt="Business Case">
     </div>
-    <!-- DEFINICIÓN DEL KPI -->
-    <h3 class="titulo-sub">DEFINICIÓN DEL KPI (KEY PERFORMANCE INDICATOR)</h3>
+
+    <h3 class="titulo-sub">Definición del kpi (key performance indicator)</h3>
     <div class="img-block">
       <img src="parte1/imagen03.jpg" alt="Definición KPI">
     </div>
-    <!-- DASHBOARD -->
-    <h3 class="titulo-sub">DASHBOARD</h3>
+
+    <h3 class="titulo-sub">Dashboard</h3>
     <div class="img-block">
       <img src="parte1/imagen04.jpg" alt="Dashboard">
     </div>
-    <!-- REPORTE DEL KPI -->
-    <h3 class="titulo-sub">REPORTE DEL KPI</h3>
+
+    <h3 class="titulo-sub">Reporte del kpi</h3>
     <div class="img-block">
       <img src="parte1/imagen05.jpg" alt="Reporte KPI">
     </div>
-    <!-- KPQ (Key Performance Questions) -->
-    <h3 class="titulo-sub">KPQ (Key Performance Questions)</h3>
-    <div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 1</div>
-  <img src="parte2/pregunta1.0.jpg" alt="KPQ 1">
-  <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1">
-  <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2">
-</div>
 
-<!-- Pregunta 2 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 2</div>
-  <img src="pregunta2.jpg" alt="KPQ 2">
-  <img src="pregunta2.1.jpg" alt="KPQ 2.1">
-  <img src="pregunta2.2.jpg" alt="KPQ 2.2">
-</div>
-<!-- Pregunta 3 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 3</div>
-  <img src="pregunta3.jpg" alt="KPQ 3">
-  <img src="pregunta3.1.jpg" alt="KPQ 3.1">
-  <img src="pregunta3.2.jpg" alt="KPQ 3.2">
-</div>
-    <!-- Pregunta 4 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 4</div>
-  <img src="pregunta4.jpg" alt="KPQ 4">
-</div>
-    <!-- Pregunta 5 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 5</div>
-  <img src="pregunta5.jpg" alt="KPQ 5">
-  <img src="pregunta5.1.jpg" alt="KPQ 5.1">
-  <img src="pregunta5.2.jpg" alt="KPQ 5.2">
-</div>
-     <!-- Pregunta 6 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 6</div>
-  <img src="pregunta6.jpg" alt="KPQ 6">
-  <img src="pregunta6.1.jpg" alt="KPQ 6.1">
-  <img src="pregunta6.2.jpg" alt="KPQ 6.2">
-</div>
-      <!-- Pregunta 7 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 7</div>
-  <img src="pregunta7.jpg" alt="KPQ 7">
-  <img src="pregunta7.1.jpg" alt="KPQ 7.1">
-  <img src="pregunta7.2.jpg" alt="KPQ 7.2">
-  </div>
-  <!-- Pregunta 8 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 8</div>
-  <img src="pregunta8.jpg" alt="KPQ 8">
-</div>
-     <!-- Pregunta 9 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 9</div>
-  <img src="pregunta9.jpg" alt="KPQ 9">
-</div>
-    <!-- Pregunta 10 -->
-<div class="img-block">
-    <div class="kpq-subtitulo">Pregunta 10</div>
-  <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0">
-  <img src="pregunta10.1.jpg" alt="KPQ 10.1">
-  <img src="pregunta10.2.jpg" alt="KPQ 10.2">
-</div>
-    <!-- Pregunta 11 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 11</div>
-  <img src="pregunta11.jpg" alt="KPQ 11">
-  <img src="pregunta11.1.jpg" alt="KPQ 11.1">
-  <img src="pregunta11.2.jpg" alt="KPQ 11.2">
-  </div>
-   <!-- Pregunta 12 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 12</div>
-  <img src="pregunta12.jpg" alt="KPQ 12">
-</div> 
-    <!-- Pregunta 13 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 13</div>
-  <img src="pregunta13.jpg" alt="KPQ 13">
-</div> 
-     <!-- Pregunta 14 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 14</div>
-  <img src="pregunta14.jpg" alt="KPQ 14">
-</div>
-    <!-- Pregunta 15 -->
-<div class="img-block">
-  <div class="kpq-subtitulo">Pregunta 15</div>
-  <img src="pregunta15.jpg" alt="KPQ 15">
-  <img src="pregunta15.1.jpg" alt="KPQ 15.1">
-  <img src="pregunta15.2.jpg" alt="KPQ 15.2">
-  </div>
+    <h3 class="titulo-sub">Kpq (key performance questions)</h3>
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 1</div>
+      <img src="parte2/pregunta1.0.jpg" alt="KPQ 1">
+      <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1">
+      <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 2</div>
+      <img src="pregunta2.jpg" alt="KPQ 2">
+      <img src="pregunta2.1.jpg" alt="KPQ 2.1">
+      <img src="pregunta2.2.jpg" alt="KPQ 2.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 3</div>
+      <img src="pregunta3.jpg" alt="KPQ 3">
+      <img src="pregunta3.1.jpg" alt="KPQ 3.1">
+      <img src="pregunta3.2.jpg" alt="KPQ 3.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 4</div>
+      <img src="pregunta4.jpg" alt="KPQ 4">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 5</div>
+      <img src="pregunta5.jpg" alt="KPQ 5">
+      <img src="pregunta5.1.jpg" alt="KPQ 5.1">
+      <img src="pregunta5.2.jpg" alt="KPQ 5.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 6</div>
+      <img src="pregunta6.jpg" alt="KPQ 6">
+      <img src="pregunta6.1.jpg" alt="KPQ 6.1">
+      <img src="pregunta6.2.jpg" alt="KPQ 6.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 7</div>
+      <img src="pregunta7.jpg" alt="KPQ 7">
+      <img src="pregunta7.1.jpg" alt="KPQ 7.1">
+      <img src="pregunta7.2.jpg" alt="KPQ 7.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 8</div>
+      <img src="pregunta8.jpg" alt="KPQ 8">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 9</div>
+      <img src="pregunta9.jpg" alt="KPQ 9">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 10</div>
+      <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0">
+      <img src="pregunta10.1.jpg" alt="KPQ 10.1">
+      <img src="pregunta10.2.jpg" alt="KPQ 10.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 11</div>
+      <img src="pregunta11.jpg" alt="KPQ 11">
+      <img src="pregunta11.1.jpg" alt="KPQ 11.1">
+      <img src="pregunta11.2.jpg" alt="KPQ 11.2">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 12</div>
+      <img src="pregunta12.jpg" alt="KPQ 12">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 13</div>
+      <img src="pregunta13.jpg" alt="KPQ 13">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 14</div>
+      <img src="pregunta14.jpg" alt="KPQ 14">
+    </div>
+
+    <div class="img-block">
+      <div class="kpq-subtitulo">Pregunta 15</div>
+      <img src="pregunta15.jpg" alt="KPQ 15">
+      <img src="pregunta15.1.jpg" alt="KPQ 15.1">
+      <img src="pregunta15.2.jpg" alt="KPQ 15.2">
+    </div>
+
   </div>
 
 </body>
 </html>
+
