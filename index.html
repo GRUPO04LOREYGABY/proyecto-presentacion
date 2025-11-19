@@ -10,14 +10,12 @@
       line-height: 1.6; 
     }
 
-    /* TÍTULO PRINCIPAL */
     h1 {
       color: #214a80;
       font-size: 32px;
       margin-bottom: 5px;
     }
 
-    /* SUBTÍTULO SECCIÓN */
     h2 {
       color: #157347;
       font-size: 24px;
@@ -25,24 +23,14 @@
       margin-bottom: 25px;
     }
 
-    /* Subtítulos de secciones e imágenes (alineados a la izquierda y capitalize) */
     .titulo-sub {
       text-decoration: underline;
       font-weight: normal;
       font-size: 22px;
       margin-top: 5px;
       margin-bottom: 8px;
-      text-align: left;          /* alineado a la izquierda */
-      text-transform: capitalize; /* solo primera letra en mayúscula */
-    }
-
-    /* Subtítulos de KPQ */
-    .kpq-subtitulo {
-      text-align: left;       /* subtítulo a la izquierda */
-      font-size: 16px;        /* letra más pequeña */
-      font-weight: normal;    /* sin negrita */
-      text-transform: none;   /* sin mayúscula automática */
-      margin: 10px 0 3px 0;   /* espacio arriba y abajo pequeño */
+      text-align: left;
+      text-transform: capitalize;
     }
 
     .img-block {
@@ -61,22 +49,13 @@
     }
 
     p { margin-bottom: 18px; }
-
-    .galeria {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* alinea todo a la izquierda */
-      gap: 40px;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- TÍTULO PRINCIPAL -->
   <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
 
-   <!-- Capa ETL -->
   <h2>Capa ETL</h2>
   <p>
     La Capa ETL comprende la documentación relacionada con los dataflows creados, los pipelines y la automatización en Python.
@@ -84,149 +63,103 @@
   <p>
     La data Pipeline en ETL se ejecuta en los siguientes pasos:
   </p>
+
   <ol>
-    <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes (como bases de datos, archivos CSV, o APIs).</li>
-    <li><strong>Transform (Transformación):</strong> Los datos son procesados, limpiados, y transformados a un formato adecuado para el análisis (como convertir fechas, corregir valores nulos, hacer agregaciones, etc.).</li>
-    <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en un repositorio de destino, como un Data Warehouse, una base de datos analítica, o una plataforma de análisis.</li>
+    <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes.</li>
+    <li><strong>Transform (Transformación):</strong> Los datos son procesados y transformados.</li>
+    <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en el repositorio de destino.</li>
   </ol>
 
-  <h3 class="titulo-sub">Dataflows:</h3>
+  <h3 class="titulo-sub">Dataflows</h3>
   <p>
     Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
   </p>
- <div class="img-block">
+
+  <div class="img-block">
     <img src="dataflow.jpg" alt="dataflow">
   </div>
-   <p>
-    <strong>Presentación de las tablas</strong>
-  </p>
-  DATAFLOW_BROKER_ADUANERO1
-   </p>
- <div class="img-block">
-    <img src="data.brocker.jpg" alt="broker_aduanero">
-  </div>
-   <p>
-   DATAFLOW_Calendario1
-   </p>
- <div class="img-block">
-    <img src="calen.jpg" alt="calendario">
-  </div>
-  </p>
-   DATAFLOW_CLIENTES1
-   </p>
- <div class="img-block">
-    <img src="cliente.jpg" alt="cliente">
-  </div>
-  </p>
-  DATAFLOW_COLABORADORES1
-   </p>
- <div class="img-block">
-    <img src="colaborador.jpg" alt="colaborador">
-  </div>
-  </p>
-  DATAFLOW_COMPRAS1
-   </p>
- <div class="img-block">
-    <img src="compra.jpg" alt="compra">
-  </div>
-  </p>
-  DATAFLOW_ENVIOS1
-   </p>
- <div class="img-block">
-    <img src="envio.jpg" alt="envio">
-  </div>
-  </p>
-  DATAFLOW_ESTADO_ENVIO1
-   </p>
- <div class="img-block">
-    <img src="estadenv.jpg" alt="estado_envio">
-  </div>
-  </p>
-  DATAFLOW_MERCADO_MENSUAL1
-   </p>
- <div class="img-block">
-    <img src="mercmes.jpg" alt="mercado_mes">
-  </div>
-  </p>
-  DATAFLOW_PAISES1
-   </p>
- <div class="img-block">
-    <img src="pais.jpg" alt="pais">
-  </div>
-  </p>
-   DATAFLOW_PRODUCTO1
-   </p>
- <div class="img-block">
-    <img src="producto.jpg" alt="producto">
-  </div>
-  </p>
-   DATAFLOW_PROVEEDOR_ENVIO1
-   </p>
- <div class="img-block">
-    <img src="proveedor.jpg" alt="proveedor">
-  </div>
-  </p>
-   DATAFLOW_PUERTOS1
-   </p>
- <div class="img-block">
-    <img src="puerto.jpg" alt="puerto">
-  </div>
-  </p>
-   DATAFLOW_TIPO_CLIENTE1
-   </p>
- <div class="img-block">
-    <img src="tipocliente.jpg" alt="tipocliente">
-  </div>
-  </p>
-   DATAFLOW_TIPO_COLABORADOR1
-   </p>
- <div class="img-block">
-    <img src="tipocolab.jpg" alt="tipocolaborador">
-  </div>
-  </p>
-   DATAFLOW_VENTAS1
-   </p>
- <div class="img-block">
-    <img src="venta.jpg" alt="venta">
-  </div>
-  </p>
-  DATAFLOW_VENTAS_X_PRODUCTO1
-   </p>
- <div class="img-block">
-    <img src="ventaxprod.jpg" alt="ventaxprod">
-  </div>
-  </p>
-  <h3 class="titulo-sub">Pipelines y automatización:</h3>
+
+  <p><strong>Presentación de las tablas</strong></p>
+
+  <!-- Cada dataflow organizado correctamente -->
+  <p>DATAFLOW_BROKER_ADUANERO1</p>
+  <div class="img-block"><img src="data.brocker.jpg" alt="broker_aduanero"></div>
+
+  <p>DATAFLOW_CALENDARIO1</p>
+  <div class="img-block"><img src="calen.jpg" alt="calendario"></div>
+
+  <p>DATAFLOW_CLIENTES1</p>
+  <div class="img-block"><img src="cliente.jpg" alt="cliente"></div>
+
+  <p>DATAFLOW_COLABORADORES1</p>
+  <div class="img-block"><img src="colaborador.jpg" alt="colaborador"></div>
+
+  <p>DATAFLOW_COMPRAS1</p>
+  <div class="img-block"><img src="compra.jpg" alt="compra"></div>
+
+  <p>DATAFLOW_ENVIOS1</p>
+  <div class="img-block"><img src="envio.jpg" alt="envio"></div>
+
+  <p>DATAFLOW_ESTADO_ENVIO1</p>
+  <div class="img-block"><img src="estadenv.jpg" alt="estado_envio"></div>
+
+  <p>DATAFLOW_MERCADO_MENSUAL1</p>
+  <div class="img-block"><img src="mercmes.jpg" alt="mercado_mes"></div>
+
+  <p>DATAFLOW_PAISES1</p>
+  <div class="img-block"><img src="pais.jpg" alt="pais"></div>
+
+  <p>DATAFLOW_PRODUCTO1</p>
+  <div class="img-block"><img src="producto.jpg" alt="producto"></div>
+
+  <p>DATAFLOW_PROVEEDOR_ENVIO1</p>
+  <div class="img-block"><img src="proveedor.jpg" alt="proveedor"></div>
+
+  <p>DATAFLOW_PUERTOS1</p>
+  <div class="img-block"><img src="puerto.jpg" alt="puerto"></div>
+
+  <p>DATAFLOW_TIPO_CLIENTE1</p>
+  <div class="img-block"><img src="tipocliente.jpg" alt="tipocliente"></div>
+
+  <p>DATAFLOW_TIPO_COLABORADOR1</p>
+  <div class="img-block"><img src="tipocolab.jpg" alt="tipocolaborador"></div>
+
+  <p>DATAFLOW_VENTAS1</p>
+  <div class="img-block"><img src="venta.jpg" alt="venta"></div>
+
+  <p>DATAFLOW_VENTAS_X_PRODUCTO1</p>
+  <div class="img-block"><img src="ventaxprod.jpg" alt="ventaxprod"></div>
+
+  <h3 class="titulo-sub">Pipelines y automatización</h3>
   <p>
-    Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Estos pipelines están diseñados para integrarse con el entorno de Microsoft Fabric, garantizando la actualización constante y la correcta transferencia de los datos.
-  </p>
-  
-  <!-- CAPA DE ALMACENAMIENTO -->
-  <h2>Capa de almacenamiento</h2>
-  <p>
-    La capa de almacenamiento constituye sobre la documentación del modelo de datos y las medidas creadas en el modelo a fin de conllevar a la elaboración de los reportes.
+    Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Se integran con Microsoft Fabric para mantener el flujo de datos actualizado.
   </p>
 
-  <!-- Subtítulo Modelo de Datos -->
+  <h2>Capa de almacenamiento</h2>
+  <p>
+    La capa de almacenamiento comprende la documentación del modelo de datos y las medidas creadas para la elaboración de reportes.
+  </p>
+
   <h3 class="titulo-sub">Modelo de datos</h3>
   <p>
-    Un modelo de datos es una representación donde se observa las relaciones entre tablas de datos para que puedan ser utilizados como guía de cómo se deben manejar los datos de manera coherente y eficiente.
+    Un modelo de datos representa las relaciones entre tablas y guía la gestión coherente y eficiente de los datos.
   </p>
-    <h3 class="titulo-sub">Definición del kpi (key performance indicator)</h3>
+
+  <h3 class="titulo-sub">Definición del KPI (Key Performance Indicator)</h3>
   <div class="img-block">
     <img src="modelo01.jpg" alt="modelo de datos">
   </div>
-   <p>
-    <strong>Relaciones del Modelo</strong>
-  </p>
- <div class="img-block">
+
+  <p><strong>Relaciones del Modelo</strong></p>
+
+  <div class="img-block">
     <img src="relacion1.jpg" alt="Relaciones del Modelo">
   </div>
-   <p>
-     <div class="img-block">
+
+  <div class="img-block">
     <img src="relacion2.jpg" alt="Relaciones del Modelo">
   </div>
-   <p>
+
   <!-- Subtítulo Medidas Calculadas -->
   <h3 class="titulo-sub">Medidas calculadas</h3>
   <ul>
