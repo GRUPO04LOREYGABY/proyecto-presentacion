@@ -29,77 +29,91 @@
     </script>
     
     <style>
-        /* --- ESTILOS GENERALES --- */
+        /* --- ESTILOS GENERALES (Centrado de la Página) --- */
         body {
             line-height: 1.8;
             color: #F5F1E6; /* Color Crema */
-            max-width: 1100px;
-            margin: 0 auto; 
-            padding: 40px 1.5rem;
             background-color: #2e2624; /* Fondo Marrón Espresso */
             font-family: 'Inter', sans-serif;
+            
+            /* FIX 1: Centrado Total de la Página */
+            display: flex; 
+            justify-content: center; /* Centra el contenido horizontalmente */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Asegura que ocupe toda la altura */
         }
         
-        /* Contenedor principal con efecto de elevación, centrado por body{margin: 0 auto;} */
+        /* Contenedor principal con efecto de elevación, centrado por body{display: flex;} */
         .business-case-container {
+            max-width: 1100px; /* Ancho máximo para el contenido */
+            width: 100%; /* Ocupa todo el ancho hasta el max-width */
+            padding: 40px 1.5rem; /* Añadimos el padding aquí */
+            
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 16px;
-            padding: 3rem;
+            
+            /* Padding interior del contenedor */
+            padding-top: 3rem; 
+            padding-bottom: 3rem;
+            padding-left: 3rem; 
+            padding-right: 3rem; 
+            
             background-color: #3c3230; /* Fondo de la hoja (Café profundo) */
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
         
         /* --- JERARQUÍA DE TÍTULOS --- */
 
-        /* H1: Título del Proyecto (MUCHO MÁS GRANDE Y NEGRITA MÁXIMA) */
+        /* H1: Título del Proyecto */
         h1 {
             font-family: 'Georgia', serif;
             border-bottom: 4px solid #D4AF37; /* Dorado */
             padding-bottom: 1rem;
             margin-bottom: 2.5rem;
-            font-size: 3.5rem; /* Aumentado */
-            font-weight: 900; /* Negrita máxima */
+            font-size: 3.5rem; 
+            font-weight: 900; 
             color: #F5F1E6;
             text-align: center;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        /* H2: Títulos Principales (Nivel 1) - GRANDE Y NEGRITA MÁXIMA */
+        /* H2: Títulos Principales */
         h2 {
             font-family: 'Georgia', serif;
-            font-size: 3.5rem; /* Aumentado */
-            font-weight: 900; /* Ultra Bold (Negrita Máxima) */
-            color: #5D9CEC; /* Azul para contraste */
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            color: #5D9CEC; 
             margin-top: 5rem; 
             margin-bottom: 2.5rem;
-            border-left: 10px solid #D4AF37; /* Barra dorada gruesa */
+            border-left: 10px solid #D4AF37; 
             padding-left: 1.5rem;
             letter-spacing: 0.05em; 
             text-transform: uppercase;
             line-height: 1.1;
         }
 
-        /* H3: Subtítulos Secundarios (Nivel 2) - MAYÚSCULAS, NEGRITA FUERTE Y DORADO */
+        /* H3: Subtítulos Secundarios */
         h3 {
             font-family: 'Inter', sans-serif;
             font-size: 1.75rem; 
             font-weight: 700; 
-            color: #D4AF37; /* Color Dorado para visibilidad */
+            color: #D4AF37; 
             margin-top: 3.5rem; 
             margin-bottom: 1.5rem; 
-            border-bottom: 2px solid #5d4d4a; /* Línea separadora café claro */
+            border-bottom: 2px solid #5d4d4a; 
             padding-bottom: 0.5rem;
             text-transform: uppercase; 
             letter-spacing: 0.05em;
         }
         
-        /* H4: Detalles y KPQs (Nivel 3) */
+        /* H4: Detalles y KPQs */
         h4 {
             font-family: 'Inter', sans-serif;
             font-size: 1.3rem;
             font-weight: 600; 
-            color: #D4AF37; /* Dorado */
+            color: #D4AF37; 
             margin-top: 2rem; 
             margin-bottom: 1rem; 
             padding-left: 1rem;
@@ -191,13 +205,14 @@
             color: #1a1a1a;
             border: none;
             padding: 12px 24px;
-            /* SE ELIMINARON LOS MÁRGENES FIJOS para que el flexbox (gap-4) controle el espacio */
-            margin: 0; 
+            margin: 0; /* Asegura que el flexbox controle el espaciado */
             border-radius: 8px;
             font-weight: 700;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             transition: all 0.2s ease;
             cursor: pointer;
+            /* Añadido flex-shrink-0 para que los botones no se encojan */
+            flex-shrink: 0;
         }
         
         .btn:hover {
@@ -269,12 +284,16 @@
 
     <!-- 2.1. ARCHIVOS RELACIONADOS (H3) -->
     <h3>Archivos relacionados</h3>
-    <div class="info-card flex flex-wrap gap-4 items-center">
-        <!-- El w-full se mantuvo para móviles, pero en desktop fluye correctamente -->
-        <p class="text-lg font-bold text-gold-accent mb-0 mr-4 w-full md:w-auto text-justify">Archivos SQL:</p>
-        <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
-        <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
-        <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📄 Inserción Datos Maestros</button>
+    <!-- FIX 2: Restructuración para alineación de botones en desktop -->
+    <div class="info-card flex flex-col sm:flex-row sm:items-center gap-4">
+        <!-- El flex-shrink-0 asegura que el texto no se comprima y el sm:mr-4 da espacio en desktop -->
+        <p class="text-lg font-bold text-gold-accent mb-0 sm:mr-4 flex-shrink-0">Archivos SQL:</p>
+        <!-- Contenedor flex para los botones, forzando la fila en desktop y permitiendo wrap en mobile -->
+        <div class="flex flex-wrap gap-4"> 
+            <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
+            <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
+            <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📄 Inserción Datos Maestros</button>
+        </div>
     </div>
 
     <!-- Visor de texto -->
