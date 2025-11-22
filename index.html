@@ -60,7 +60,26 @@
     La capa de datos comprende la documentación relacionada con el código SQL utilizado para la creación de tablas y el establecimiento de las relaciones necesarias para construir el modelo de datos. 
     Asimismo, incluye la inserción de los datos, los cuales fueron generados con el apoyo de la herramienta de IA Gemini.
   </p>
-
+<p>Para el análisis del negocio de Gold Coffee Export SAC, se estructuraron las siguientes tablas:</p>
+<ul>
+  <li><strong>Calendario:</strong> La tabla maestra de fechas. Permite filtrar y analizar todos los hechos por niveles temporales (Año, Mes, Trimestre, etc.).</li>
+  <li><strong>Clientes:</strong> El catálogo de la demanda. Clasifica a la entidad que recibe el producto (razón social, ubicación fiscal, tipo de cliente).</li>
+  <li><strong>Tipo de Cliente:</strong> Clasificación según sector o necesidades del cliente.</li>
+  <li><strong>Colaboradores:</strong> El catálogo de los recursos humanos que generan la venta. Permite medir el desempeño individual o por equipo.</li>
+  <li><strong>Tipo de Colaborador:</strong> Categoría que identifica el rol o función del empleado.</li>
+  <li><strong>Producto:</strong> Catálogo de la mercancía que describe qué se está vendiendo, que incluye el tipo de Café, la presentación y el precio por tonelada.</li>
+  <li><strong>Puertos:</strong> Catálogo de los puntos geográficos de origen y destino del transporte.</li>
+  <li><strong>Países:</strong> Catálogo de referencia para normalizar la ubicación de clientes y puertos.</li>
+  <li><strong>Bróker aduanero:</strong> Lista de las empresas que gestionan los trámites de importación/exportación.</li>
+  <li><strong>Ventas:</strong> Es el registro maestro de una venta. Fija la fecha, el cliente y el colaborador para el evento comercial.</li>
+  <li><strong>Ventas x producto:</strong> Contiene los montos detallados (la facturación) y las cantidades por cada producto vendido dentro de una transacción.</li>
+  <li><strong>Envíos:</strong> Detalla las variables de tiempo y costo asociadas al transporte de la mercancía, desde la salida hasta la llegada estimada.</li>
+  <li><strong>Estado envio:</strong> Catálogo de las etapas posibles en las que se puede encontrar un envío (ej., "En Tránsito", "Entregado").</li>
+  <li><strong>Mercado Mensual:</strong> Tabla que registra las toneladas exportadas desde Perú, facilitando el análisis de la participación de la empresa en el mercado y la evolución de sus ventas.</li>
+  <li><strong>Compras:</strong> Tabla que registra únicamente el costo del flete, vinculada con la tabla de proveedores.</li>
+  <li><strong>Proveedor envio:</strong> Catálogo de empresas que suministran servicios logísticos y transporte para el envío de mercancía.</li>
+</ul>
+  
   <div style="background:#eef1f4; padding:20px; border-radius:10px; max-width: 920px;">
     <p><strong>Archivos relacionados</strong></p>
     <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
