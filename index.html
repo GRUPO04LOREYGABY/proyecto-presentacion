@@ -40,7 +40,7 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* Contenedor principal con efecto de elevación */
+        /* Contenedor principal con efecto de elevación, centrado por body{margin: 0 auto;} */
         .business-case-container {
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 16px;
@@ -136,8 +136,8 @@
             border: 1px solid #4a3b38;
         }
         
-        /* Estilos para las imágenes reales, si cargan */
-        .img-block img:not(.hidden) {
+        /* Estilos para las imágenes reales o para el icono de imagen rota (si no cargan) */
+        .img-block img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
@@ -147,25 +147,9 @@
             margin: 0 auto;
         }
         
-        .img-block img:hover:not(.hidden) {
+        .img-block img:hover {
             transform: scale(1.02);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Placeholder para imagen faltante (SIEMPRE VISIBLE) */
-        .image-placeholder {
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            color: #D4AF37;
-            border: 2px dashed #5d4d4a;
-            background-color: #2e2624;
-            border-radius: 8px;
-            margin: 1rem auto;
-            padding: 2rem;
-            text-align: center;
         }
 
         /* Texto y Listas */
@@ -207,8 +191,8 @@
             color: #1a1a1a;
             border: none;
             padding: 12px 24px;
-            margin-right: 15px;
-            margin-bottom: 15px;
+            /* SE ELIMINARON LOS MÁRGENES FIJOS para que el flexbox (gap-4) controle el espacio */
+            margin: 0; 
             border-radius: 8px;
             font-weight: 700;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -246,10 +230,7 @@
     <!-- 1. DIAGRAMA DE ARQUITECTURA DE LA SOLUCIÓN (H2) -->
     <h2>Diagrama de arquitectura de la solución</h2>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="diagrama.jpg" alt="diagrama" class="hidden"> 
+        <img src="diagrama.jpg" alt="Diagrama de arquitectura de Gold Coffee Exports"> 
     </div>
     
     <!-- 2. CAPA DE DATOS (H2) -->
@@ -289,6 +270,7 @@
     <!-- 2.1. ARCHIVOS RELACIONADOS (H3) -->
     <h3>Archivos relacionados</h3>
     <div class="info-card flex flex-wrap gap-4 items-center">
+        <!-- El w-full se mantuvo para móviles, pero en desktop fluye correctamente -->
         <p class="text-lg font-bold text-gold-accent mb-0 mr-4 w-full md:w-auto text-justify">Archivos SQL:</p>
         <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
         <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
@@ -317,10 +299,7 @@
     <!-- 2.1.1. TABLAS DEL SISTEMA EN SQL (H4) -->
     <h4>Tablas del sistema en SQL</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            [Image of Tablas del sistema SQL]
-        </div>
-        <img src="tablas_sql.jpg" alt="tablas_sql" class="hidden">
+        <img src="tablas_sql.jpg" alt="Tablas del sistema SQL">
     </div>
 
     <!-- 3. CAPA ETL (H2) -->
@@ -343,10 +322,7 @@
         Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
     </p>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="dataflow.jpg" alt="dataflow" class="hidden">
+        <img src="dataflow.jpg" alt="Dataflow de Microsoft Fabric">
     </div>
 
     <!-- 3.1.1. PRESENTACIÓN DE LAS TABLAS (H4) -->
@@ -356,130 +332,82 @@
     
     <h4>DATAFLOW_BROKER_ADUANERO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.brocker.jpg" alt="broker_aduanero" class="hidden">
+        <img src="data.brocker.jpg" alt="Dataflow Broker Aduanero">
     </div>
 
     <h4>DATAFLOW_CALENDARIO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.calen.jpg" alt="calendario" class="hidden">
+        <img src="data.calen.jpg" alt="Dataflow Calendario">
     </div>
 
     <h4>DATAFLOW_CLIENTES1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.cliente.jpg" alt="cliente" class="hidden">
+        <img src="data.cliente.jpg" alt="Dataflow Clientes">
     </div>
 
     <h4>DATAFLOW_COLABORADORES1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.colaborador.jpg" alt="colaborador" class="hidden">
+        <img src="data.colaborador.jpg" alt="Dataflow Colaboradores">
     </div>
 
     <h4>DATAFLOW_COMPRAS1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.compra.jpg" alt="compra" class="hidden">
+        <img src="data.compra.jpg" alt="Dataflow Compras">
     </div>
 
     <h4>DATAFLOW_ENVIOS1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.envio.jpg" alt="envio" class="hidden">
+        <img src="data.envio.jpg" alt="Dataflow Envios">
     </div>
 
     <h4>DATAFLOW_ESTADO_ENVIO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.estadenv.jpg" alt="estado_envio" class="hidden">
+        <img src="data.estadenv.jpg" alt="Dataflow Estado Envio">
     </div>
 
     <h4>DATAFLOW_MERCADO_MENSUAL1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.mercmes.jpg" alt="mercado_mes" class="hidden">
+        <img src="data.mercmes.jpg" alt="Dataflow Mercado Mensual">
     </div>
 
     <h4>DATAFLOW_PAISES1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.pais.jpg" alt="pais" class="hidden">
+        <img src="data.pais.jpg" alt="Dataflow Paises">
     </div>
 
     <h4>DATAFLOW_PRODUCTO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.producto.jpg" alt="producto" class="hidden">
+        <img src="data.producto.jpg" alt="Dataflow Producto">
     </div>
 
     <h4>DATAFLOW_PROVEEDOR_ENVIO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.proveedor.jpg" alt="proveedor" class="hidden">
+        <img src="data.proveedor.jpg" alt="Dataflow Proveedor Envio">
     </div>
 
     <h4>DATAFLOW_PUERTOS1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.puerto.jpg" alt="puerto" class="hidden">
+        <img src="data.puerto.jpg" alt="Dataflow Puertos">
     </div>
 
     <h4>DATAFLOW_TIPO_CLIENTE1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.tipocliente.jpg" alt="tipocliente" class="hidden">
+        <img src="data.tipocliente.jpg" alt="Dataflow Tipo Cliente">
     </div>
 
     <h4>DATAFLOW_TIPO_COLABORADOR1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.tipocolab.jpg" alt="tipocolaborador" class="hidden">
+        <img src="data.tipocolab.jpg" alt="Dataflow Tipo Colaborador">
     </div>
 
     <h4>DATAFLOW_VENTAS1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.venta.jpg" alt="venta" class="hidden">
+        <img src="data.venta.jpg" alt="Dataflow Ventas">
     </div>
 
     <h4>DATAFLOW_VENTAS_X_PRODUCTO1</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="data.ventaxprod.jpg" alt="ventaxprod" class="hidden">
+        <img src="data.ventaxprod.jpg" alt="Dataflow Ventas por Producto">
     </div>
 
     <!-- 3.2. PIPELINES Y AUTOMATIZACIÓN (H3) -->
@@ -501,25 +429,16 @@
     </p>
     
     <div class="img-block">
-        <div class="image-placeholder">
-            
-        </div>
-        <img src="modelo01.jpg" alt="modelo de datos" class="hidden">
+        <img src="modelo01.jpg" alt="Modelo de Datos Estrella o Snow Flake">
     </div>
     
     <!-- 4.1.1. RELACIONES DEL MODELO (H4) -->
     <h4>Relaciones del Modelo</h4>
     <div class="img-block">
-        <div class="image-placeholder">
-            [Image of Modelo de Datos Relaciones 1]
-        </div>
-        <img src="relacion1.jpg" alt="Relaciones del Modelo" class="hidden">
+        <img src="relacion1.jpg" alt="Modelo de Datos Relaciones 1">
     </div>
     <div class="img-block">
-        <div class="image-placeholder">
-            [Image of Modelo de Datos Relaciones 2]
-        </div>
-        <img src="relacion2.jpg" alt="Relaciones del Modelo" class="hidden">
+        <img src="relacion2.jpg" alt="Modelo de Datos Relaciones 2">
     </div>
 
     <!-- 4.2. MEDIDAS CALCULADAS (H3) -->
@@ -581,46 +500,31 @@
         <!-- 5.1. HOJA DE PRESENTACIÓN (H3) -->
         <h3>Hoja de presentación</h3>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="parte1/imagen01.jpg" alt="Hoja de presentación" class="hidden">
+            <img src="parte1/imagen01.jpg" alt="Hoja de presentación">
         </div>
 
         <!-- 5.2. BUSINESS CASE (H3) -->
         <h3>Business case</h3>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="parte1/imagen02.jpg" alt="Business Case" class="hidden">
+            <img src="parte1/imagen02.jpg" alt="Business Case Gold Coffee Exports">
         </div>
 
         <!-- 5.3. DEFINICIÓN DEL KPI (H3) -->
         <h3>Definición del kpi (key performance indicator)</h3>
         <div class="img-block">
-            <div class="image-placeholder">
-                [Image of Definición de KPI]
-            </div>
-            <img src="parte1/imagen03.jpg" alt="Definición KPI" class="hidden">
+            <img src="parte1/imagen03.jpg" alt="Definición de KPI">
         </div>
 
         <!-- 5.4. DASHBOARD (H3) -->
         <h3>Dashboard</h3>
         <div class="img-block">
-            <div class="image-placeholder">
-                [Image of Dashboard Principal de Power BI]
-            </div>
-            <img src="parte1/imagen04.jpg" alt="Dashboard" class="hidden">
+            <img src="parte1/imagen04.jpg" alt="Dashboard Principal de Power BI">
         </div>
 
         <!-- 5.5. REPORTE DEL KPI (H3) -->
         <h3>Reporte del kpi</h3>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="parte1/imagen05.jpg" alt="Reporte KPI" class="hidden">
+            <img src="parte1/imagen05.jpg" alt="Reporte de KPI Tendencia">
         </div>
 
         <!-- 5.6. KPQ (H3) -->
@@ -629,160 +533,114 @@
         <!-- 5.6.1. PREGUNTA 1 (H4) -->
         <h4>Pregunta 1</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="parte2/pregunta1.0.jpg" alt="KPQ 1" class="hidden">
-            <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1" class="hidden">
-            <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2" class="hidden">
+            <img src="parte2/pregunta1.0.jpg" alt="KPQ 1">
+            <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1">
+            <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2">
         </div>
 
         <!-- 5.6.2. PREGUNTA 2 (H4) -->
         <h4>Pregunta 2</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta2.jpg" alt="KPQ 2" class="hidden">
-            <img src="pregunta2.1.jpg" alt="KPQ 2.1" class="hidden">
-            <img src="pregunta2.2.jpg" alt="KPQ 2.2" class="hidden">
+            <img src="pregunta2.jpg" alt="KPQ 2">
+            <img src="pregunta2.1.jpg" alt="KPQ 2.1">
+            <img src="pregunta2.2.jpg" alt="KPQ 2.2">
         </div>
 
         <!-- 5.6.3. PREGUNTA 3 (H4) -->
         <h4>Pregunta 3</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta3.jpg" alt="KPQ 3" class="hidden">
-            <img src="pregunta3.1.jpg" alt="KPQ 3.1" class="hidden">
-            <img src="pregunta3.2.jpg" alt="KPQ 3.2" class="hidden">
+            <img src="pregunta3.jpg" alt="KPQ 3">
+            <img src="pregunta3.1.jpg" alt="KPQ 3.1">
+            <img src="pregunta3.2.jpg" alt="KPQ 3.2">
         </div>
 
         <!-- 5.6.4. PREGUNTA 4 (H4) -->
         <h4>Pregunta 4</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta4.jpg" alt="KPQ 4" class="hidden">
+            <img src="pregunta4.jpg" alt="KPQ 4">
         </div>
 
         <!-- 5.6.5. PREGUNTA 5 (H4) -->
         <h4>Pregunta 5</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta5.jpg" alt="KPQ 5" class="hidden">
-            <img src="pregunta5.1.jpg" alt="KPQ 5.1" class="hidden">
-            <img src="pregunta5.2.jpg" alt="KPQ 5.2" class="hidden">
+            <img src="pregunta5.jpg" alt="KPQ 5">
+            <img src="pregunta5.1.jpg" alt="KPQ 5.1">
+            <img src="pregunta5.2.jpg" alt="KPQ 5.2">
         </div>
 
         <!-- 5.6.6. PREGUNTA 6 (H4) -->
         <h4>Pregunta 6</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta6.jpg" alt="KPQ 6" class="hidden">
-            <img src="pregunta6.1.jpg" alt="KPQ 6.1" class="hidden">
-            <img src="pregunta6.2.jpg" alt="KPQ 6.2" class="hidden">
+            <img src="pregunta6.jpg" alt="KPQ 6">
+            <img src="pregunta6.1.jpg" alt="KPQ 6.1">
+            <img src="pregunta6.2.jpg" alt="KPQ 6.2">
         </div>
 
         <!-- 5.6.7. PREGUNTA 7 (H4) -->
         <h4>Pregunta 7</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta7.jpg" alt="KPQ 7" class="hidden">
-            <img src="pregunta7.1.jpg" alt="KPQ 7.1" class="hidden">
-            <img src="pregunta7.2.jpg" alt="KPQ 7.2" class="hidden">
+            <img src="pregunta7.jpg" alt="KPQ 7">
+            <img src="pregunta7.1.jpg" alt="KPQ 7.1">
+            <img src="pregunta7.2.jpg" alt="KPQ 7.2">
         </div>
 
         <!-- 5.6.8. PREGUNTA 8 (H4) -->
         <h4>Pregunta 8</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta8.jpg" alt="KPQ 8" class="hidden">
+            <img src="pregunta8.jpg" alt="KPQ 8">
         </div>
 
         <!-- 5.6.9. PREGUNTA 9 (H4) -->
         <h4>Pregunta 9</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta9.jpg" alt="KPQ 9" class="hidden">
+            <img src="pregunta9.jpg" alt="KPQ 9">
         </div>
 
         <!-- 5.6.10. PREGUNTA 10 (H4) -->
         <h4>Pregunta 10</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0" class="hidden">
-            <img src="pregunta10.1.jpg" alt="KPQ 10.1" class="hidden">
-            <img src="pregunta10.2.jpg" alt="KPQ 10.2" class="hidden">
+            <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0">
+            <img src="pregunta10.1.jpg" alt="KPQ 10.1">
+            <img src="pregunta10.2.jpg" alt="KPQ 10.2">
         </div>
 
         <!-- 5.6.11. PREGUNTA 11 (H4) -->
         <h4>Pregunta 11</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta11.jpg" alt="KPQ 11" class="hidden">
-            <img src="pregunta11.1.jpg" alt="KPQ 11.1" class="hidden">
-            <img src="pregunta11.2.jpg" alt="KPQ 11.2" class="hidden">
+            <img src="pregunta11.jpg" alt="KPQ 11">
+            <img src="pregunta11.1.jpg" alt="KPQ 11.1">
+            <img src="pregunta11.2.jpg" alt="KPQ 11.2">
         </div>
 
         <!-- 5.6.12. PREGUNTA 12 (H4) -->
         <h4>Pregunta 12</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta12.jpg" alt="KPQ 12" class="hidden">
+            <img src="pregunta12.jpg" alt="KPQ 12">
         </div>
 
         <!-- 5.6.13. PREGUNTA 13 (H4) -->
         <h4>Pregunta 13</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta13.jpg" alt="KPQ 13" class="hidden">
-            <img src="pregunta13.1.jpg" alt="KPQ 13.1" class="hidden">
-            <img src="pregunta13.2.jpg" alt="KPQ 13.2" class="hidden">
+            <img src="pregunta13.jpg" alt="KPQ 13">
+            <img src="pregunta13.1.jpg" alt="KPQ 13.1">
+            <img src="pregunta13.2.jpg" alt="KPQ 13.2">
         </div>
 
         <!-- 5.6.14. PREGUNTA 14 (H4) -->
         <h4>Pregunta 14</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta14.jpg" alt="KPQ 14" class="hidden">
+            <img src="pregunta14.jpg" alt="KPQ 14">
         </div>
 
         <!-- 5.6.15. PREGUNTA 15 (H4) -->
         <h4>Pregunta 15</h4>
         <div class="img-block">
-            <div class="image-placeholder">
-                
-            </div>
-            <img src="pregunta15.jpg" alt="KPQ 15" class="hidden">
-            <img src="pregunta15.1.jpg" alt="KPQ 15.1" class="hidden">
-            <img src="pregunta15.2.jpg" alt="KPQ 15.2" class="hidden">
+            <img src="pregunta15.jpg" alt="KPQ 15">
+            <img src="pregunta15.1.jpg" alt="KPQ 15.1">
+            <img src="pregunta15.2.jpg" alt="KPQ 15.2">
         </div>
 
     </div>
 </div>
 </body>
 </html>
-
