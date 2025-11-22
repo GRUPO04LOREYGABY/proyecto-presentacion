@@ -1,0 +1,56 @@
+ALTER TABLE DVG4.tb_clientes1 ADD CONSTRAINT fk_tb_tipo_cliente 
+FOREIGN KEY (tipo_cliente_id) REFERENCES DVG4.tb_tipo_cliente1(tipo_cliente_id)
+
+ALTER TABLE DVG4.tb_clientes1 ADD CONSTRAINT fk_tb_pais_id 
+FOREIGN KEY (pais_id) REFERENCES DVG4.tb_paises1(pais_id)
+
+ALTER TABLE DVG4.tb_puertos1 ADD CONSTRAINT fk_tb_paises_id 
+FOREIGN KEY (pais_id) REFERENCES DVG4.tb_paises1(pais_id)
+
+ALTER TABLE DVG4.tb_compras1 ADD CONSTRAINT fk_tb_proveedor_id 
+FOREIGN KEY (prov_id) REFERENCES DVG4.tb_proveedor_envio1(prov_id)
+
+ALTER TABLE DVG4.tb_colaboradores1 ADD CONSTRAINT fk_tb_tipo_colaborador_id 
+FOREIGN KEY (tipo_colaborador_id) REFERENCES DVG4.tb_tipo_colaborador1(tipo_colaborador_id)
+
+ALTER TABLE DVG4.tb_ventas_x_producto1 ADD CONSTRAINT fk_tb_producto_sid 
+FOREIGN KEY (producto_id) REFERENCES DVG4.tb_producto1(producto_id)
+
+ALTER TABLE DVG4.tb_ventas_x_producto1 ADD CONSTRAINT fk_tb_venta_id 
+FOREIGN KEY (venta_id) REFERENCES DVG4.tb_ventas1(venta_id)
+
+ALTER TABLE DVG4.tb_ventas1 ADD CONSTRAINT fk_tb_colaborador_id 
+FOREIGN KEY (colaborador_id) REFERENCES DVG4.tb_colaboradores1(colaborador_id)
+
+ALTER TABLE DVG4.tb_ventas1 ADD CONSTRAINT fk_tb_broker_aduanero_sid_ 
+FOREIGN KEY (broker_aduanero_id) REFERENCES DVG4.tb_broker_aduanero1(broker_aduanero_id)
+
+ALTER TABLE DVG4.tb_ventas1 ADD CONSTRAINT fk_tb_cliente_id_2
+FOREIGN KEY (cliente_id) REFERENCES DVG4.tb_clientes1(cliente_id)
+
+ALTER TABLE DVG4.tb_envios1 ADD CONSTRAINT fk_tb_venta_id_2
+FOREIGN KEY (venta_id) REFERENCES DVG4.tb_ventas1(venta_id)
+
+ALTER TABLE DVG4.tb_envios1 ADD CONSTRAINT fk_tb_puerto_id
+FOREIGN KEY (puerto_id) REFERENCES DVG4.tb_puertos1(puerto_id)
+
+ALTER TABLE DVG4.tb_envios1 ADD CONSTRAINT fk_tb_estado_envio_id
+FOREIGN KEY (estado_envio_id) REFERENCES DVG4.tb_estado_envio1(estado_envio_id)
+
+ALTER TABLE DVG4.tb_envios1 ADD CONSTRAINT fk_tb_prov_id_2
+FOREIGN KEY (prov_id) REFERENCES DVG4.tb_proveedor_envio1(prov_id)
+
+--función de conexión para dob.calendario
+ALTER TABLE DVG4.tb_ventas1
+ADD CONSTRAINT fk_ventas_fecha_venta
+FOREIGN KEY (fecha_de_venta) REFERENCES dbo.Calendario(date);
+
+-- 2. Conexión de tb_compras (compras_fecha)
+ALTER TABLE DVG4.tb_compras1
+ADD CONSTRAINT fk_compras_fecha
+FOREIGN KEY (compras_fecha) REFERENCES dbo.Calendario(date);
+
+-- 3. Conexión de tb_mercado_mensual (mercado_mensual_fecha)
+ALTER TABLE DVG4.tb_mercado_mensual1
+ADD CONSTRAINT fk_mercado_mensual_fecha
+FOREIGN KEY (mercado_mensual_fecha) REFERENCES dbo.Calendario(date);

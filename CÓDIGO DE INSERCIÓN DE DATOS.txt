@@ -1,0 +1,94 @@
+select*from DVG4.tb_compras1
+select*from DVG4.tb_compras_staging1
+
+insert into DVG4.tb_compras1(compras_id,prov_id,producto_servicio_comprado,costo_producto_servicio,compras_fecha)
+select compras_id,prov_id,producto_servicio_comprado,costo_producto_servicio,compras_fecha from DVG4.tb_compras_staging1
+
+select*from DVG4.tb_clientes1
+select*from DVG4.tb_clientes_staging1
+
+insert into DVG4.tb_clientes1(cliente_id,pais_id,tipo_cliente_id,razon_social_nombre,ruc_cliente,ciudad_nombre,ciudad_direccion_fiscal,estado_nombre)
+select cliente_id,pais_id,tipo_cliente_id,razon_social_nombre,ruc_cliente,ciudad_nombre,ciudad_direccion_fiscal,estado_nombre from DVG4.tb_clientes_staging1
+----------------------------------------------------
+ALTER TABLE DVG4.tb_clientes1
+ALTER COLUMN ruc_cliente VARCHAR(50)
+----------------------------------------------------
+select*from DVG4.tb_ventas1
+select*from DVG4.tb_ventas_staging1
+
+insert into DVG4.tb_ventas1(venta_id,colaborador_id,cliente_id,broker_aduanero_id,fecha_de_venta)
+select venta_id,colaborador_id,cliente_id,broker_aduanero_id,fecha_de_venta from DVG4.tb_ventas_staging1
+
+select*from DVG4.tb_ventas_x_producto1
+select*from DVG4.tb_ventas_x_producto_staging1
+
+insert into DVG4.tb_ventas_x_producto1(ventas_x_producto_id,producto_id,venta_id,cantdidad_ton,precio_x_ton_facturado)
+select ventas_x_producto_id,producto_id,venta_id,cantdidad_ton,precio_x_ton_facturado from DVG4.tb_ventas_x_producto_staging1
+
+select*from DVG4.tb_producto1
+select*from DVG4.tb_productos_staging1
+
+insert into DVG4.tb_producto1(producto_id,producto_nombre,producto_presentacion,producto_precio_x_tonelada) 
+select producto_id,producto_nombre,producto_presentacion,producto_precio_x_tonelada from DVG4.tb_productos_staging1
+
+select*from DVG4.tb_puertos1
+select*from DVG4.tb_puertos_staging1
+
+insert into DVG4.tb_puertos1(puerto_id,pais_id,puerto_nombre,puerto_direccion,puerto_ciudad,puerto_region)
+select puerto_id,pais_id,puerto_nombre,puerto_direccion,puerto_ciudad,puerto_region from DVG4.tb_puertos_staging1
+
+select*from DVG4.tb_tipo_cliente1
+select*from DVG4.tb_tipo_cliente_staging1
+
+insert into DVG4.tb_tipo_cliente1(tipo_cliente_id,tipo_cliente_nombre)
+select tipo_cliente_id,tipo_cliente_nombre from DVG4.tb_tipo_cliente_staging1
+
+select*from DVG4.tb_broker_aduanero1
+select*from DVG4.tb_broker_aduanero_staging1
+
+insert into DVG4.tb_broker_aduanero1(broker_aduanero_id,broker_aduanero_nombre,broker_aduanero_ruc,broker_aduanero_telefono,broker_aduanero_correo)
+select broker_aduanero_id,broker_aduanero_nombre,broker_aduanero_ruc,broker_aduanero_telefono,broker_aduanero_correo from DVG4.tb_broker_aduanero_staging1
+
+select*from DVG4.tb_proveedor_envio1
+select*from DVG4.tb_proveedores_envios_staging1
+
+insert into DVG4.tb_proveedor_envio1(prov_id,prov_nombre,ruc_proveedor,serv_ofrecido,direccion_fiscal)
+select prov_id,prov_nombre,ruc_proveedor,serv_ofrecido,direccion_fiscal from DVG4.tb_proveedores_envios_staging1
+
+select*from DVG4.tb_tipo_colaborador_staging1
+
+insert into DVG4.tb_tipo_colaborador1(tipo_colaborador_id,tipo_colaborador_nombre) 
+select tipo_colaborador_id,tipo_colaborador_nombre from DVG4.tb_tipo_colaborador_staging1
+
+select*from DVG4.tb_colaboradores1
+select*from DVG4.tb_colaboradores_staging1
+
+insert into DVG4.tb_colaboradores1(colaborador_id,tipo_colaborador_id,colaborador_nombre) 
+select colaborador_id,tipo_colaborador_id,colaborador_nombre from DVG4.tb_colaboradores_staging1
+
+select*from dvg4.tb_paises1
+select*from[DVG4].[tb_paises_staging1]
+
+insert into dvg4.tb_paises1(pais_id,pais_nombre) 
+select pais_id,pais_nombre from DVG4.tb_paises_staging1
+
+select*from DVG4.tb_estado_envio1
+select*from dvg4.tb_estado_envios_staging1
+
+insert into DVG4.tb_estado_envio1(estado_envio_id,estado_envio_nombre) 
+select estado_envio_id,estado_envio_nombre from dvg4.tb_estado_envios_staging1
+
+select*from DVG4.tb_mercado_mensual1
+select*from dvg4.tb_mercado_mensual_staging1
+
+insert into DVG4.tb_mercado_mensual1(mercado_mensual_id,mercado_mensual_fecha,mercado_mensual_precio_x_ton_prom) 
+select mercado_mensual_id,mercado_mensual_fecha,mercado_mensual_precio_x_ton_prom from dvg4.tb_mercado_mensual_staging1
+
+select*from DVG4.tb_envios1
+select*from dvg4.tb_envios_staging1
+
+insert into DVG4.tb_envios1(envios_id,venta_id,puerto_id,estado_envio_id,prov_id,envios_salida_fecha_hora,envios_llegada_fecha_hora_estima,envios_costo) 
+select envios_id,venta_id,puerto_id,estado_envio_id,prov_id,envios_salida_fecha_hora,envios_llegada_fecha_hora_estima,envios_costo from dvg4.tb_envios_staging1
+
+
+

@@ -1,0 +1,111 @@
+CREATE TABLE DVG4.tb_tipo_cliente1 (
+    tipo_cliente_id        VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    tipo_cliente_nombre    VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE DVG4.tb_broker_aduanero1 (
+    broker_aduanero_id      VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    broker_aduanero_nombre  VARCHAR(200) NOT NULL,
+    broker_aduanero_ruc     BIGINT,
+    broker_aduanero_telefono VARCHAR(200),
+    broker_aduanero_correo  VARCHAR(300)
+);
+
+CREATE TABLE DVG4.tb_paises1 (
+    pais_id        VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    pais_nombre    VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE DVG4.tb_puertos1 (
+    puerto_id        VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    pais_id          VARCHAR(50) NOT NULL,    -- Clave Foránea (VARCHAR)
+    puerto_nombre    VARCHAR(200) NOT NULL,
+    puerto_direccion VARCHAR(200),
+    puerto_ciudad    VARCHAR(200),
+    puerto_region    VARCHAR(200)
+);
+
+CREATE TABLE DVG4.tb_estado_envio1 (
+    estado_envio_id    VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    estado_envio_nombre VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE DVG4.tb_producto1 (
+    producto_id        VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    producto_nombre    VARCHAR(200) NOT NULL,
+    producto_presentacion VARCHAR(200),
+    producto_precio_x_tonelada INT
+);
+
+CREATE TABLE DVG4.tb_tipo_colaborador1 (
+    tipo_colaborador_id    VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    tipo_colaborador_nombre VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE DVG4.tb_colaboradores1 (
+    colaborador_id      VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    tipo_colaborador_id VARCHAR(50) NOT NULL,    -- Clave Foránea (VARCHAR)
+    colaborador_nombre  VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE DVG4.tb_clientes1 (
+    cliente_id              VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    pais_id                 VARCHAR(50) NOT NULL,    -- Clave Foránea (VARCHAR)
+    tipo_cliente_id         VARCHAR(50) NOT NULL,    -- Clave Foránea (VARCHAR)
+    razon_social_nombre     VARCHAR(200) NOT NULL,
+    ruc_cliente             BIGINT,
+    ciudad_nombre           VARCHAR(200),
+    ciudad_direccion_fiscal VARCHAR(200),
+    estado_nombre           VARCHAR(200)
+);
+
+CREATE TABLE DVG4.tb_proveedor_envio1 (
+    prov_id         VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    prov_nombre     VARCHAR(200) NOT NULL,
+    ruc_proveedor   BIGINT,
+    serv_ofrecido   TEXT,
+    direccion_fiscal   TEXT
+);
+
+
+CREATE TABLE DVG4.tb_compras1 (
+    compras_id                  VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    prov_id                     VARCHAR(50) NOT NULL, -- Clave Foránea (VARCHAR)
+    producto_servicio_comprado  VARCHAR(200) NOT NULL,
+    costo_producto_servicio     INT,
+    compras_fecha               DATE NOT NULL
+);
+
+CREATE TABLE DVG4.tb_mercado_mensual1 (
+    mercado_mensual_id              VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    mercado_mensual_fecha           DATE NOT NULL,
+    mercado_mensual_cantidad_tonelada NUMERIC(10, 2),
+    mercado_mensual_precio_x_ton_prom INT
+);
+
+CREATE TABLE DVG4.tb_ventas1 (
+    venta_id                VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    colaborador_id          VARCHAR(50) NOT NULL,
+    cliente_id              VARCHAR(50) NOT NULL,
+    broker_aduanero_id      VARCHAR(50),
+    fecha_de_venta          DATE NOT NULL
+);
+
+CREATE TABLE DVG4.tb_ventas_x_producto1 (
+    ventas_x_producto_id    VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    producto_id             VARCHAR(50) NOT NULL,
+    venta_id                VARCHAR(50) NOT NULL,
+    cantdidad_ton           NUMERIC(10, 2) NOT NULL,
+    precio_x_ton_facturado  INT
+);
+
+CREATE TABLE DVG4.tb_envios1 (
+    envios_id                       VARCHAR(50) PRIMARY KEY, -- Clave alfanumérica
+    venta_id                        VARCHAR(50) NOT NULL,
+    puerto_id                       VARCHAR(50) NOT NULL,
+    estado_envio_id                 VARCHAR(50) NOT NULL,
+    prov_id                         VARCHAR(50) NOT NULL, -- Clave Foránea (VARCHAR)
+    envios_salida_fecha_hora        DATETIME,
+    envios_llegada_fecha_hora_estima DATETIME,
+    envios_costo                    INT
+);
