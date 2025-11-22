@@ -60,6 +60,52 @@
     La capa de datos comprende la documentación relacionada con el código SQL utilizado para la creación de tablas y el establecimiento de las relaciones necesarias para construir el modelo de datos. 
     Asimismo, incluye la inserción de los datos, los cuales fueron generados con el apoyo de la herramienta de IA Gemini.
   </p>
+
+  <div style="background:#eef1f4; padding:20px; border-radius:10px; max-width: 920px;">
+    <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
+    <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📦 Inserción Datos Maestros</button>
+    <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">🧱 Relación de Tablas</button>
+  </div>
+
+  <pre id="visorTXT" style="
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    white-space:pre-wrap;
+    max-width: 920px;
+  "></pre>
+
+  <style>
+    .btn {
+      background:#1f78c8;
+      color:white;
+      border:none;
+      padding:12px 18px;
+      margin-right:10px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.2s;
+    }
+    .btn:hover {
+      background:#155a96;
+    }
+  </style>
+
+  <script>
+    function cargarTXT(ruta) {
+      fetch(ruta)
+        .then(resp => resp.text())
+        .then(texto => {
+          document.getElementById("visorTXT").textContent = texto;
+        })
+        .catch(err => {
+          document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
+        });
+    }
+  </script>
   
   <h2>Capa ETL</h2>
   <p>
