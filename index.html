@@ -79,7 +79,14 @@
   <li><strong>Compras:</strong> Tabla que registra únicamente el costo del flete, vinculada con la tabla de proveedores.</li>
   <li><strong>Proveedor envio:</strong> Catálogo de empresas que suministran servicios logísticos y transporte para el envío de mercancía.</li>
 </ul>
-  
+    <p>
+    Las tablas del modelo fueron diseñadas teniendo en cuenta claves primarias y foráneas, con el objetivo de garantizar la integridad referencial y una correcta vinculación de los datos. Cada tabla principal 
+      posee una clave primaria que identifica de manera única cada registro, mientras que las claves foráneas facilitan la asociación de información entre las tablas relacionada.
+  </p>
+    <p>
+    La carga inicial de datos se realizó mediante la opción Import Flat File, que permitió crear tablas staging a partir de archivos planos (CSV, TXT u otros). Estas tablas intermedias sirven para poder poblar 
+      las tablas finales del modelo. 
+  </p>
   <div style="background:#eef1f4; padding:20px; border-radius:10px; max-width: 920px;">
     <p><strong>Archivos relacionados</strong></p>
     <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
