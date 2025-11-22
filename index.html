@@ -1,445 +1,788 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Business Case - Gold Coffee Exports SAC</title>
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 40px; 
-      line-height: 1.6; 
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Case - Gold Coffee Exports SAC</title>
+    <!-- Carga de Tailwind CSS para estilos modernos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de Colores y Fuentes -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Paleta de colores ajustada a tonos CAFÉ
+                        'coffee-bg': '#2e2624',    // Fondo general (Café Espresso muy oscuro, menos fuerte)
+                        'coffee-card': '#3c3230',  // Fondo de contenedores (Moca oscuro)
+                        'cream': '#F5F1E6',        // Texto principal (Crema suave, mejor lectura que blanco puro)
+                        'gold-accent': '#D4AF37',  // Dorado metálico
+                        'system-blue': '#5D9CEC',  // Azul vibrante pero suave para contraste con marrón
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'Times New Roman', 'serif'], 
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body {
+            line-height: 1.8;
+            color: #F5F1E6; /* Color Crema */
+            max-width: 1100px;
+            margin: 0 auto; 
+            padding: 40px 1.5rem;
+            background-color: #2e2624; /* Fondo Marrón Espresso */
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Contenedor principal con efecto de elevación */
+        .business-case-container {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            background-color: #3c3230; /* Fondo de la hoja (Café profundo) */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* --- JERARQUÍA DE TÍTULOS --- */
 
-    h1 {
-      color: #214a80;
-      font-size: 32px;
-      margin-bottom: 5px;
-    }
+        /* H1: Título del Proyecto (MUCHO MÁS GRANDE Y NEGRITA MÁXIMA) */
+        h1 {
+            font-family: 'Georgia', serif;
+            border-bottom: 4px solid #D4AF37; /* Dorado */
+            padding-bottom: 1rem;
+            margin-bottom: 2.5rem;
+            font-size: 3.5rem; /* Aumentado */
+            font-weight: 900; /* Negrita máxima */
+            color: #F5F1E6;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-    h2 {
-      color: #157347;
-      font-size: 24px;
-      margin-top: 0px;
-      margin-bottom: 25px;
-    }
+        /* H2: Títulos Principales (Nivel 1) - GRANDE Y NEGRITA MÁXIMA */
+        h2 {
+            font-family: 'Georgia', serif;
+            font-size: 3.5rem; /* Aumentado */
+            font-weight: 900; /* Ultra Bold (Negrita Máxima) */
+            color: #5D9CEC; /* Azul para contraste */
+            margin-top: 5rem; 
+            margin-bottom: 2.5rem;
+            border-left: 10px solid #D4AF37; /* Barra dorada gruesa */
+            padding-left: 1.5rem;
+            letter-spacing: 0.05em; 
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
 
-    .titulo-sub {
-      text-decoration: underline;
-      font-weight: normal;
-      font-size: 22px;
-      margin-top: 5px;
-      margin-bottom: 8px;
-      text-align: left;
-      text-transform: capitalize;
-    }
+        /* H3: Subtítulos Secundarios (Nivel 2) - MAYÚSCULAS, NEGRITA FUERTE Y DORADO */
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem; 
+            font-weight: 700; 
+            color: #D4AF37; /* Color Dorado para visibilidad */
+            margin-top: 3.5rem; 
+            margin-bottom: 1.5rem; 
+            border-bottom: 2px solid #5d4d4a; /* Línea separadora café claro */
+            padding-bottom: 0.5rem;
+            text-transform: uppercase; 
+            letter-spacing: 0.05em;
+        }
+        
+        /* H4: Detalles y KPQs (Nivel 3) */
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600; 
+            color: #D4AF37; /* Dorado */
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+            padding-left: 1rem;
+            border-left: 4px solid #D4AF37;
+            background-color: rgba(212, 175, 55, 0.1);
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 0 8px 8px 0;
+        }
 
-    .img-block {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+        /* --- COMPONENTES --- */
 
-    img {
-      max-width: 900px;
-      width: 100%;
-      height: auto;
-      border: 2px solid #eee;
-      border-radius: 7px;
-      box-shadow: 0 4px 18px #0001;
-    }
+        /* Tarjeta de Presentación (Integrantes) */
+        .info-card {
+            background-color: #362b29; /* Moca */
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-top: 6px solid #D4AF37;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .info-card strong { color: #D4AF37; }
 
-    p { margin-bottom: 18px; }
-  </style>
+        /* Bloques de Imágenes */
+        .img-block {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 1.5rem;
+            background-color: #2e2624;
+            border-radius: 12px;
+            border: 1px solid #4a3b38;
+        }
+        
+        /* Estilos para las imágenes reales, si cargan */
+        .img-block img:not(.hidden) {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .img-block img:hover:not(.hidden) {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Placeholder para imagen faltante (SIEMPRE VISIBLE) */
+        .image-placeholder {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #D4AF37;
+            border: 2px dashed #5d4d4a;
+            background-color: #2e2624;
+            border-radius: 8px;
+            margin: 1rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Texto y Listas */
+        p { 
+            margin-bottom: 1.5rem; 
+            text-align: justify; 
+            font-size: 1.05rem;
+        } 
+        
+        ul, ol { 
+            padding-left: 1.5rem; 
+            margin-bottom: 2rem; 
+            list-style-position: outside;
+        }
+        
+        ul li { list-style-type: disc; margin-bottom: 0.8rem; color: #e0ddd5; }
+        ol li { margin-bottom: 0.8rem; color: #e0ddd5; }
+        
+        strong { color: #fff; font-weight: 700; }
+        
+        /* Visor de Código */
+        #visorTXT {
+            margin-top:30px; 
+            background:#2e2624; 
+            color: #5D9CEC; 
+            padding:25px; 
+            border-radius:8px;
+            border:1px solid #4a3b38;
+            white-space:pre-wrap;
+            max-width: 100%;
+            font-family: monospace;
+            font-size: 15px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Botones */
+        .btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B4941F 100%); /* Degradado dorado */
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 24px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 
 <body>
-
-  <h1>Business Case: GOLD COFFE EXPORTS SAC</h1>
-  <!-- SUBTÍTULO -->
-  <div style="background:#eef1f4; padding:20px; border-radius:10px; max-width: 920px;">
-    <p><strong>Integrantes: </strong></p>
-    <li>Lorena Rázuri Lazarte</li>
-    <li>María Gabriela Estrada Perez</li>
+<div class="business-case-container">
+    <!-- 📌 INICIO DEL BLOQUE DE PRESENTACIÓN (Punto 3) -->
+    <h1 class="text-cream">GOLD COFFEE EXPORTS SAC</h1>
     
-    <p><strong>Diplomatura: </strong></p>
-    Data Visualization and Dashboarding
+    <div class="info-card">
+        <p class="mb-2 text-justify"><strong>Integrantes: </strong></p>
+        <ul class="list-disc ml-6 mt-0 mb-4">
+            <li>Lorena Rázuri Lazarte</li>
+            <li>María Gabriela Estrada Perez</li>
+        </ul>
+        
+        <p class="mb-2 text-justify"><strong>Diplomatura: </strong></p>
+        <p class="ml-6 mt-0 mb-4 text-justify">Data Visualization and Dashboarding</p>
+        
+        <p class="mb-2 text-justify"><strong>Curso: </strong></p>
+        <p class="ml-6 mt-0 mb-0 text-justify">Data Visualization with Power BI + Cloud</p>
+    </div>
+    <!-- 📌 FIN DEL BLOQUE DE PRESENTACIÓN -->
     
-<p><strong>Curso: </strong></p>
-    Data Visualization with Power BI + Cloud
-      </div>
-  
-  <h2>Diagrama de arquitectura de la solución</h2>
+    <!-- 1. DIAGRAMA DE ARQUITECTURA DE LA SOLUCIÓN (H2) -->
+    <h2>Diagrama de arquitectura de la solución</h2>
     <div class="img-block">
-    <img src="diagrama.jpg" alt="diagrama">
-  </div>
-<h2>Capa de datos</h2>
-  <p>
-    La capa de datos comprende la documentación relacionada con el código SQL utilizado para la creación de tablas y el establecimiento de las relaciones necesarias para construir el modelo de datos. 
-    Asimismo, incluye la inserción de los datos, los cuales fueron generados con el apoyo de la herramienta de IA Gemini.
-  </p>
-<p>Para el análisis del negocio de Gold Coffee Export SAC, se estructuraron las siguientes tablas:</p>
-<ul>
-  <li><strong>Calendario:</strong> La tabla maestra de fechas. Permite filtrar y analizar todos los hechos por niveles temporales (Año, Mes, Trimestre, etc.).</li>
-  <li><strong>Clientes:</strong> El catálogo de la demanda. Clasifica a la entidad que recibe el producto (razón social, ubicación fiscal, tipo de cliente).</li>
-  <li><strong>Tipo de Cliente:</strong> Clasificación según sector o necesidades del cliente.</li>
-  <li><strong>Colaboradores:</strong> El catálogo de los recursos humanos que generan la venta. Permite medir el desempeño individual o por equipo.</li>
-  <li><strong>Tipo de Colaborador:</strong> Categoría que identifica el rol o función del empleado.</li>
-  <li><strong>Producto:</strong> Catálogo de la mercancía que describe qué se está vendiendo, que incluye el tipo de Café, la presentación y el precio por tonelada.</li>
-  <li><strong>Puertos:</strong> Catálogo de los puntos geográficos de origen y destino del transporte.</li>
-  <li><strong>Países:</strong> Catálogo de referencia para normalizar la ubicación de clientes y puertos.</li>
-  <li><strong>Bróker aduanero:</strong> Lista de las empresas que gestionan los trámites de importación/exportación.</li>
-  <li><strong>Ventas:</strong> Es el registro maestro de una venta. Fija la fecha, el cliente y el colaborador para el evento comercial.</li>
-  <li><strong>Ventas x producto:</strong> Contiene los montos detallados (la facturación) y las cantidades por cada producto vendido dentro de una transacción.</li>
-  <li><strong>Envíos:</strong> Detalla las variables de tiempo y costo asociadas al transporte de la mercancía, desde la salida hasta la llegada estimada.</li>
-  <li><strong>Estado envio:</strong> Catálogo de las etapas posibles en las que se puede encontrar un envío (ej., "En Tránsito", "Entregado").</li>
-  <li><strong>Mercado Mensual:</strong> Tabla que registra las toneladas exportadas desde Perú, facilitando el análisis de la participación de la empresa en el mercado y la evolución de sus ventas.</li>
-  <li><strong>Compras:</strong> Tabla que registra únicamente el costo del flete, vinculada con la tabla de proveedores.</li>
-  <li><strong>Proveedor envio:</strong> Catálogo de empresas que suministran servicios logísticos y transporte para el envío de mercancía.</li>
-</ul>
-    <p>
-    Las tablas del modelo fueron diseñadas teniendo en cuenta claves primarias y foráneas, con el objetivo de garantizar la integridad referencial y una correcta vinculación de los datos. Cada tabla principal 
-      posee una clave primaria que identifica de manera única cada registro, mientras que las claves foráneas facilitan la asociación de información entre las tablas relacionada.
-  </p>
-    <p>
-    La carga inicial de datos se realizó mediante la opción Import Flat File, que permitió crear tablas staging a partir de archivos planos (CSV, TXT u otros). Estas tablas intermedias sirven para poder poblar 
-      las tablas finales del modelo. 
-  </p>
-  <div style="background:#eef1f4; padding:20px; border-radius:10px; max-width: 920px;">
-    <p><strong>Archivos relacionados</strong></p>
-    <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
-    <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
-    <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📄 Inserción Datos Maestros</button>
-  </div>
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="diagrama.jpg" alt="diagrama" class="hidden"> 
+    </div>
+    
+    <!-- 2. CAPA DE DATOS (H2) -->
+    <h2>Capa de datos</h2>
+    <p class="text-justify">
+        La capa de datos comprende la documentación relacionada con el código SQL utilizado para la creación de tablas y el establecimiento de las relaciones necesarias para construir el modelo de datos.
+        Asimismo, incluye la inserción de los datos, los cuales fueron generados con el apoyo de la herramienta de IA Gemini.
+    </p>
+    <p class="text-justify">Para el análisis del negocio de Gold Coffee Export SAC, se estructuraron las siguientes tablas:</p>
+    <ul class="list-disc ml-6 text-cream/90">
+        <li><strong>Calendario:</strong> La tabla maestra de fechas. Permite filtrar y analizar todos los hechos por niveles temporales (Año, Mes, Trimestre, etc.).</li>
+        <li><strong>Clientes:</strong> El catálogo de la demanda. Clasifica a la entidad que recibe el producto (razón social, ubicación fiscal, tipo de cliente).</li>
+        <li><strong>Tipo de Cliente:</strong> Clasificación según sector o necesidades del cliente.</li>
+        <li><strong>Colaboradores:</strong> El catálogo de los recursos humanos que generan la venta. Permite medir el desempeño individual o por equipo.</li>
+        <li><strong>Tipo de Colaborador:</strong> Categoría que identifica el rol o función del empleado.</li>
+        <li><strong>Producto:</strong> Catálogo de la mercancía que describe qué se está vendiendo, que incluye el tipo de Café, la presentación y el precio por tonelada.</li>
+        <li><strong>Puertos:</strong> Catálogo de los puntos geográficos de origen y destino del transporte.</li>
+        <li><strong>Países:</strong> Catálogo de referencia para normalizar la ubicación de clientes y puertos.</li>
+        <li><strong>Bróker aduanero:</strong> Lista de las empresas que gestionan los trámites de importación/exportación.</li>
+        <li><strong>Ventas:</strong> Es el registro maestro de una venta. Fija la fecha, el cliente y el colaborador para el evento comercial.</li>
+        <li><strong>Ventas x producto:</strong> Contiene los montos detallados (la facturación) y las cantidades por cada producto vendido dentro de una transacción.</li>
+        <li><strong>Envíos:</strong> Detalla las variables de tiempo y costo asociadas al transporte de la mercancía, desde la salida hasta la llegada estimada.</li>
+        <li><strong>Estado envio:</strong> Catálogo de las etapas posibles en las que se puede encontrar un envío (ej., "En Tránsito", "Entregado").</li>
+        <li><strong>Mercado Mensual:</strong> Tabla que registra las toneladas exportadas desde Perú, facilitando el análisis de la participación de la empresa en el mercado y la evolución de sus ventas.</li>
+        <li><strong>Compras:</strong> Tabla que registra únicamente el costo del flete, vinculada con la tabla de proveedores.</li>
+        <li><strong>Proveedor envio:</strong> Catálogo de empresas que suministran servicios logísticos y transporte para el envío de mercancía.</li>
+    </ul>
+    <p class="text-justify">
+        Las tablas del modelo fueron diseñadas teniendo en cuenta claves primarias y foráneas, con el objetivo de garantizar la integridad referencial y una correcta vinculación de los datos. Cada tabla principal
+        posee una clave primaria que identifica de manera única cada registro, mientras que las claves foráneas facilitan la asociación de información entre las tablas relacionada.
+    </p>
+    <p class="text-justify">
+        La carga inicial de datos se realizó mediante la opción Import Flat File, que permitió crear tablas staging a partir de archivos planos (CSV, TXT u otros). Estas tablas intermedias sirven para poder poblar
+        las tablas finales del modelo.
+    </p>
 
-  <pre id="visorTXT" style="
-    margin-top:20px;
-    background:white;
-    padding:20px;
-    border-radius:8px;
-    border:1px solid #ddd;
-    white-space:pre-wrap;
-    max-width: 920px;
-  "></pre>
-
-  <style>
-    .btn {
-      background:#1f78c8;
-      color:white;
-      border:none;
-      padding:12px 18px;
-      margin-right:10px;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:16px;
-      transition:0.2s;
-    }
-    .btn:hover {
-      background:#155a96;
-    }
-  </style>
-
-  <script>
-    function cargarTXT(ruta) {
-      fetch(ruta)
-        .then(resp => resp.text())
-        .then(texto => {
-          document.getElementById("visorTXT").textContent = texto;
-        })
-        .catch(err => {
-          document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
-        });
-    }
-  </script>
-   <p><strong>Tablas del sistema en SQL</strong></p>
-    <div class="img-block">
-    <img src="tablas_sql.jpg" alt="tablas_sql">
-  </div>
-  
-  <h2>Capa ETL</h2>
-  <p>
-    La Capa ETL comprende la documentación relacionada con los dataflows creados, los pipelines y la automatización en Python.
-  </p>
-  <p>
-    La data Pipeline en ETL se ejecuta en los siguientes pasos:
-  </p>
-
-  <ol>
-    <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes.</li>
-    <li><strong>Transform (Transformación):</strong> Los datos son procesados y transformados.</li>
-    <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en el repositorio de destino.</li>
-  </ol>
-
-  <h3 class="titulo-sub">Dataflows</h3>
-  <p>
-    Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
-  </p>
-
-  <div class="img-block">
-    <img src="dataflow.jpg" alt="dataflow">
-  </div>
-
-  <p><strong>Presentación de las tablas</strong></p>
-
-  <!-- Cada dataflow organizado correctamente -->
-  <p>DATAFLOW_BROKER_ADUANERO1</p>
-  <div class="img-block"><img src="data.brocker.jpg" alt="broker_aduanero"></div>
-
-  <p>DATAFLOW_CALENDARIO1</p>
-  <div class="img-block"><img src="data.calen.jpg" alt="calendario"></div>
-
-  <p>DATAFLOW_CLIENTES1</p>
-  <div class="img-block"><img src="data.cliente.jpg" alt="cliente"></div>
-
-  <p>DATAFLOW_COLABORADORES1</p>
-  <div class="img-block"><img src="data.colaborador.jpg" alt="colaborador"></div>
-
-  <p>DATAFLOW_COMPRAS1</p>
-  <div class="img-block"><img src="data.compra.jpg" alt="compra"></div>
-
-  <p>DATAFLOW_ENVIOS1</p>
-  <div class="img-block"><img src="data.envio.jpg" alt="envio"></div>
-
-  <p>DATAFLOW_ESTADO_ENVIO1</p>
-  <div class="img-block"><img src="data.estadenv.jpg" alt="estado_envio"></div>
-
-  <p>DATAFLOW_MERCADO_MENSUAL1</p>
-  <div class="img-block"><img src="data.mercmes.jpg" alt="mercado_mes"></div>
-
-  <p>DATAFLOW_PAISES1</p>
-  <div class="img-block"><img src="data.pais.jpg" alt="pais"></div>
-
-  <p>DATAFLOW_PRODUCTO1</p>
-  <div class="img-block"><img src="data.producto.jpg" alt="producto"></div>
-
-  <p>DATAFLOW_PROVEEDOR_ENVIO1</p>
-  <div class="img-block"><img src="data.proveedor.jpg" alt="proveedor"></div>
-
-  <p>DATAFLOW_PUERTOS1</p>
-  <div class="img-block"><img src="data.puerto.jpg" alt="puerto"></div>
-
-  <p>DATAFLOW_TIPO_CLIENTE1</p>
-  <div class="img-block"><img src="data.tipocliente.jpg" alt="tipocliente"></div>
-
-  <p>DATAFLOW_TIPO_COLABORADOR1</p>
-  <div class="img-block"><img src="data.tipocolab.jpg" alt="tipocolaborador"></div>
-
-  <p>DATAFLOW_VENTAS1</p>
-  <div class="img-block"><img src="data.venta.jpg" alt="venta"></div>
-
-  <p>DATAFLOW_VENTAS_X_PRODUCTO1</p>
-  <div class="img-block"><img src="data.ventaxprod.jpg" alt="ventaxprod"></div>
-
-  <h3 class="titulo-sub">Pipelines y automatización</h3>
-  <p>
-    Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Se integran con Microsoft Fabric para mantener el flujo de datos actualizado.
-  </p>
-
-  <h2>Capa de almacenamiento</h2>
-  <p>
-    La capa de almacenamiento comprende la documentación del modelo de datos y las medidas creadas para la elaboración de reportes.
-  </p>
-
-  <h3 class="titulo-sub">Modelo de datos</h3>
-  <p>
-    Un modelo de datos representa las relaciones entre tablas y guía la gestión coherente y eficiente de los datos.
-  </p>
-  
-  <div class="img-block">
-    <img src="modelo01.jpg" alt="modelo de datos">
-  </div>
-
-  <p><strong>Relaciones del Modelo</strong></p>
-
-  <div class="img-block">
-    <img src="relacion1.jpg" alt="Relaciones del Modelo">
-  </div>
-
-  <div class="img-block">
-    <img src="relacion2.jpg" alt="Relaciones del Modelo">
-  </div>
-
-  <!-- Subtítulo Medidas Calculadas -->
-  <h3 class="titulo-sub">Medidas calculadas</h3>
-  <ul>
-    <li>% TOTAL_FACTURADO_MoM = DIVIDE([Total_Facturado]-[TOTAL_FACTURADO_PM],[TOTAL_FACTURADO_PM])</li>
-    <li>CANT_VENTAS_2025 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2025)</li>
-    <li>Cantidad de Toneladas 2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
-    <li>CantPedidos = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]))</li>
-    <li>CantPedidos 2024 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2024)</li>
-    <li>EXPORT MENSUAL = SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom])</li>
-    <li>export mensual 2025 = CALCULATE(SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom]),Calendario[año]=2025)</li>
-    <li>KPI = [Total_Facturado]/[EXPORT MENSUAL]</li>
-    <li>KPI 2025 = [Total_Facturado_2025]/[export mensual 2025]</li>
-    <li>KPI OBJETIVO = 0.39</li>
-    <li>KPI_2023 = CALCULATE([KPI],Calendario[año]=2023)</li>
-    <li>KPI_2024 = CALCULATE([KPI],Calendario[año]=2024)</li>
-    <li>Meta_Anual 2025 = 283624000</li>
-    <li>Promedio de CantPedidos 2024 por razon_social_nombre = AVERAGEX(KEEPMFILTERS(VALUES('DVG4 tb_clientes1'[razon_social_nombre])), CALCULATE([CantPedidos 2024]))</li>
-    <li>Promedio de CantPedidos por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])),CALCULATE([CantPedidos]))</li>
-    <li>Promedio de KPI 2025 por ciudad_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_clientes1'[ciudad_nombre])), CALCULATE([KPI 2025]))</li>
-    <li>Promedio de KPI 2025 por pais_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_paises1'[pais_nombre])), CALCULATE([KPI 2025]))</li>
-    <li>Promedio de KPI por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])), CALCULATE([KPI]))</li>
-    <li>Promedio de KPI por Mes = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Mes])), CALCULATE([KPI]))</li>
-    <li>Promedio de KPI_2024 por tipo_cliente_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_tipo_cliente1'[tipo_cliente_nombre])), CALCULATE([KPI_2024]))</li>
-    <li>Promedio de Total_Facturado_2025 por prov_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_proveedor_envio1'[prov_nombre])), CALCULATE([Total_Facturado_2025]))</li>
-    <li>Total_Facturado = SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado])</li>
-    <li>Total_Facturado_2024 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2024)</li>
-    <li>Total_Facturado_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2025)</li>
-    <li>TOTAL_FACTURADO_PM = CALCULATE([Total_Facturado],DATEADD(Calendario[x. fechas],-1,MONTH))</li>
-    <li>TOTAL_TONELADAS_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
-  </ul>
-
-  <!-- SUBTÍTULO -->
-  <h2>Capa de presentación</h2>
-
-  <p>
-    La capa de presentación constituye la fase final de la información procesada del Business Case de la empresa 
-    <strong>Gold Coffee Export SAC</strong>, donde la información se transforma en conocimiento accionable listo 
-    para la toma de decisiones.
-  </p>
-
-  <p>
-    Esta capa utiliza herramientas de visualización avanzadas, como Power BI y Microsoft Fabric, para convertir los 
-    datos en un recurso estratégico y operativo de alto valor, sintetizando mediante interfaces intuitivas y análisis 
-    visual para generar un impacto directo en la toma de decisiones.
-  </p>
-
-  <p>
-    La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo 
-    un modelo de datos robusto. Sus principales componentes son:
-  </p>
-
-  <ul>
-    <li><strong>Business Case:</strong> Se desarrolla el objetivo, la estrategia y costo beneficio.</li>
-    <li><strong>Definición del KPI (Key Performance Indicator):</strong> Incluye la definición precisa, la fórmula de cálculo y sus características esenciales.</li>
-    <li><strong>Dashboard:</strong> Vista integral del KPI.</li>
-    <li><strong>Reporte del KPI:</strong> Proporciona un análisis del KPI en un periodo de tiempo específico. En este caso, se proyecta la visualización histórica y tendencial desde Junio de 2025 hasta Mayo de 2027.</li>
-    <li><strong>KPQ (Key Performance Questions):</strong> Desarrollo de reportes analíticos que responden a las preguntas clave de rendimiento.</li>
-  </ul>
-
-  <div class="galeria">
-    <h3 class="titulo-sub">Hoja de presentación</h3>
-    <div class="img-block">
-      <img src="parte1/imagen01.jpg" alt="Hoja de presentación">
+    <!-- 2.1. ARCHIVOS RELACIONADOS (H3) -->
+    <h3>Archivos relacionados</h3>
+    <div class="info-card flex flex-wrap gap-4 items-center">
+        <p class="text-lg font-bold text-gold-accent mb-0 mr-4 w-full md:w-auto text-justify">Archivos SQL:</p>
+        <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
+        <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
+        <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📄 Inserción Datos Maestros</button>
     </div>
 
-    <h3 class="titulo-sub">Business case</h3>
+    <!-- Visor de texto -->
+    <pre id="visorTXT" class="mt-4"></pre>
+    
+    <script>
+        // Función original de carga de texto
+        function cargarTXT(ruta) {
+            fetch(ruta)
+                .then(resp => resp.text())
+                .then(texto => {
+                    document.getElementById("visorTXT").textContent = texto;
+                    // Desplazar a la vista del visor para mejor UX
+                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(err => {
+                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
+                });
+        }
+    </script>
+    
+    <!-- 2.1.1. TABLAS DEL SISTEMA EN SQL (H4) -->
+    <h4>Tablas del sistema en SQL</h4>
     <div class="img-block">
-      <img src="parte1/imagen02.jpg" alt="Business Case">
+        <div class="image-placeholder">
+            [Image of Tablas del sistema SQL]
+        </div>
+        <img src="tablas_sql.jpg" alt="tablas_sql" class="hidden">
     </div>
 
-    <h3 class="titulo-sub">Definición del kpi (key performance indicator)</h3>
+    <!-- 3. CAPA ETL (H2) -->
+    <h2>Capa etl</h2>
+    <p class="text-justify">
+        La Capa ETL comprende la documentación relacionada con los dataflows creados, los pipelines y la automatización en Python.
+    </p>
+    <p class="text-justify">
+        La Data Pipeline en ETL se ejecuta en los siguientes pasos:
+    </p>
+    <ol class="list-decimal ml-6 text-cream/90">
+        <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes.</li>
+        <li><strong>Transform (Transformación):</strong> Los datos son procesados y transformados.</li>
+        <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en el repositorio de destino.</li>
+    </ol>
+
+    <!-- 3.1. DATA FLOWS (H3) -->
+    <h3>Dataflows</h3>
+    <p class="text-justify">
+        Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
+    </p>
     <div class="img-block">
-      <img src="parte1/imagen03.jpg" alt="Definición KPI">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="dataflow.jpg" alt="dataflow" class="hidden">
     </div>
 
-    <h3 class="titulo-sub">Dashboard</h3>
+    <!-- 3.1.1. PRESENTACIÓN DE LAS TABLAS (H4) -->
+    <h4>Presentación de las tablas</h4>
+    
+    <!-- Dataflow items (Nivel 4 en la jerarquía) -->
+    
+    <h4>DATAFLOW_BROKER_ADUANERO1</h4>
     <div class="img-block">
-      <img src="parte1/imagen04.jpg" alt="Dashboard">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.brocker.jpg" alt="broker_aduanero" class="hidden">
     </div>
 
-    <h3 class="titulo-sub">Reporte del kpi</h3>
+    <h4>DATAFLOW_CALENDARIO1</h4>
     <div class="img-block">
-      <img src="parte1/imagen05.jpg" alt="Reporte KPI">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.calen.jpg" alt="calendario" class="hidden">
     </div>
 
-    <h3 class="titulo-sub">Kpq (key performance questions)</h3>
+    <h4>DATAFLOW_CLIENTES1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 1</div>
-      <img src="parte2/pregunta1.0.jpg" alt="KPQ 1">
-      <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1">
-      <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.cliente.jpg" alt="cliente" class="hidden">
     </div>
 
+    <h4>DATAFLOW_COLABORADORES1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 2</div>
-      <img src="pregunta2.jpg" alt="KPQ 2">
-      <img src="pregunta2.1.jpg" alt="KPQ 2.1">
-      <img src="pregunta2.2.jpg" alt="KPQ 2.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.colaborador.jpg" alt="colaborador" class="hidden">
     </div>
 
+    <h4>DATAFLOW_COMPRAS1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 3</div>
-      <img src="pregunta3.jpg" alt="KPQ 3">
-      <img src="pregunta3.1.jpg" alt="KPQ 3.1">
-      <img src="pregunta3.2.jpg" alt="KPQ 3.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.compra.jpg" alt="compra" class="hidden">
     </div>
 
+    <h4>DATAFLOW_ENVIOS1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 4</div>
-      <img src="pregunta4.jpg" alt="KPQ 4">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.envio.jpg" alt="envio" class="hidden">
     </div>
 
+    <h4>DATAFLOW_ESTADO_ENVIO1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 5</div>
-      <img src="pregunta5.jpg" alt="KPQ 5">
-      <img src="pregunta5.1.jpg" alt="KPQ 5.1">
-      <img src="pregunta5.2.jpg" alt="KPQ 5.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.estadenv.jpg" alt="estado_envio" class="hidden">
     </div>
 
+    <h4>DATAFLOW_MERCADO_MENSUAL1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 6</div>
-      <img src="pregunta6.jpg" alt="KPQ 6">
-      <img src="pregunta6.1.jpg" alt="KPQ 6.1">
-      <img src="pregunta6.2.jpg" alt="KPQ 6.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.mercmes.jpg" alt="mercado_mes" class="hidden">
     </div>
 
+    <h4>DATAFLOW_PAISES1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 7</div>
-      <img src="pregunta7.jpg" alt="KPQ 7">
-      <img src="pregunta7.1.jpg" alt="KPQ 7.1">
-      <img src="pregunta7.2.jpg" alt="KPQ 7.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.pais.jpg" alt="pais" class="hidden">
     </div>
 
+    <h4>DATAFLOW_PRODUCTO1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 8</div>
-      <img src="pregunta8.jpg" alt="KPQ 8">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.producto.jpg" alt="producto" class="hidden">
     </div>
 
+    <h4>DATAFLOW_PROVEEDOR_ENVIO1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 9</div>
-      <img src="pregunta9.jpg" alt="KPQ 9">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.proveedor.jpg" alt="proveedor" class="hidden">
     </div>
 
+    <h4>DATAFLOW_PUERTOS1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 10</div>
-      <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0">
-      <img src="pregunta10.1.jpg" alt="KPQ 10.1">
-      <img src="pregunta10.2.jpg" alt="KPQ 10.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.puerto.jpg" alt="puerto" class="hidden">
     </div>
 
+    <h4>DATAFLOW_TIPO_CLIENTE1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 11</div>
-      <img src="pregunta11.jpg" alt="KPQ 11">
-      <img src="pregunta11.1.jpg" alt="KPQ 11.1">
-      <img src="pregunta11.2.jpg" alt="KPQ 11.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.tipocliente.jpg" alt="tipocliente" class="hidden">
     </div>
 
+    <h4>DATAFLOW_TIPO_COLABORADOR1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 12</div>
-      <img src="pregunta12.jpg" alt="KPQ 12">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.tipocolab.jpg" alt="tipocolaborador" class="hidden">
     </div>
 
+    <h4>DATAFLOW_VENTAS1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 13</div>
-      <img src="pregunta13.jpg" alt="KPQ 13">
-       <img src="pregunta13.1.jpg" alt="KPQ 13.1">
-      <img src="pregunta13.2.jpg" alt="KPQ 13.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.venta.jpg" alt="venta" class="hidden">
     </div>
 
+    <h4>DATAFLOW_VENTAS_X_PRODUCTO1</h4>
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 14</div>
-      <img src="pregunta14.jpg" alt="KPQ 14">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="data.ventaxprod.jpg" alt="ventaxprod" class="hidden">
     </div>
 
+    <!-- 3.2. PIPELINES Y AUTOMATIZACIÓN (H3) -->
+    <h3>Pipelines y automatización</h3>
+    <p class="text-justify">
+        Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Se integran con Microsoft Fabric para mantener el flujo de datos actualizado.
+    </p>
+
+    <!-- 4. CAPA DE ALMACENAMIENTO (H2) -->
+    <h2>Capa de almacenamiento</h2>
+    <p class="text-justify">
+        La capa de almacenamiento comprende la documentación del modelo de datos y las medidas creadas para la elaboración de reportes.
+    </p>
+
+    <!-- 4.1. MODELO DE DATOS (H3) -->
+    <h3>Modelo de datos</h3>
+    <p class="text-justify">
+        Un modelo de datos representa las relaciones entre tablas y guía la gestión coherente y eficiente de los datos.
+    </p>
+    
     <div class="img-block">
-      <div class="kpq-subtitulo">Pregunta 15</div>
-      <img src="pregunta15.jpg" alt="KPQ 15">
-      <img src="pregunta15.1.jpg" alt="KPQ 15.1">
-      <img src="pregunta15.2.jpg" alt="KPQ 15.2">
+        <div class="image-placeholder">
+            
+        </div>
+        <img src="modelo01.jpg" alt="modelo de datos" class="hidden">
+    </div>
+    
+    <!-- 4.1.1. RELACIONES DEL MODELO (H4) -->
+    <h4>Relaciones del Modelo</h4>
+    <div class="img-block">
+        <div class="image-placeholder">
+            [Image of Modelo de Datos Relaciones 1]
+        </div>
+        <img src="relacion1.jpg" alt="Relaciones del Modelo" class="hidden">
+    </div>
+    <div class="img-block">
+        <div class="image-placeholder">
+            [Image of Modelo de Datos Relaciones 2]
+        </div>
+        <img src="relacion2.jpg" alt="Relaciones del Modelo" class="hidden">
     </div>
 
+    <!-- 4.2. MEDIDAS CALCULADAS (H3) -->
+    <h3>Medidas calculadas</h3>
+    <ul class="list-disc ml-6 text-cream/90">
+        <li>% TOTAL_FACTURADO_MoM = DIVIDE([Total_Facturado]-[TOTAL_FACTURADO_PM],[TOTAL_FACTURADO_PM])</li>
+        <li>CANT_VENTAS_2025 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2025)</li>
+        <li>Cantidad de Toneladas 2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+        <li>CantPedidos = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]))</li>
+        <li>CantPedidos 2024 = CALCULATE(COUNT('DVG4 tb_ventas1'[venta_id]),Calendario[año]=2024)</li>
+        <li>EXPORT MENSUAL = SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom])</li>
+        <li>export mensual 2025 = CALCULATE(SUM('DVG4 tb_mercado_mensual1'[mercado_mensual_precio_x_ton_prom]),Calendario[año]=2025)</li>
+        <li>KPI = [Total_Facturado]/[EXPORT MENSUAL]</li>
+        <li>KPI 2025 = [Total_Facturado_2025]/[export mensual 2025]</li>
+        <li>KPI OBJETIVO = 0.39</li>
+        <li>KPI_2023 = CALCULATE([KPI],Calendario[año]=2023)</li>
+        <li>KPI_2024 = CALCULATE([KPI],Calendario[año]=2024)</li>
+        <li>Meta_Anual 2025 = 283624000</li>
+        <li>Promedio de CantPedidos 2024 por razon_social_nombre = AVERAGEX(KEEPMFILTERS(VALUES('DVG4 tb_clientes1'[razon_social_nombre])), CALCULATE([CantPedidos 2024]))</li>
+        <li>Promedio de CantPedidos por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])),CALCULATE([CantPedidos]))</li>
+        <li>Promedio de KPI 2025 por ciudad_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_clientes1'[ciudad_nombre])), CALCULATE([KPI 2025]))</li>
+        <li>Promedio de KPI 2025 por pais_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_paises1'[pais_nombre])), CALCULATE([KPI 2025]))</li>
+        <li>Promedio de KPI por Año = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Año])), CALCULATE([KPI]))</li>
+        <li>Promedio de KPI por Mes = AVERAGEX(KEEPFILTERS(VALUES('Calendario'[x. fechas].[Mes])), CALCULATE([KPI]))</li>
+        <li>Promedio de KPI_2024 por tipo_cliente_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_tipo_cliente1'[tipo_cliente_nombre])), CALCULATE([KPI_2024]))</li>
+        <li>Promedio de Total_Facturado_2025 por prov_nombre = AVERAGEX(KEEPFILTERS(VALUES('DVG4 tb_proveedor_envio1'[prov_nombre])), CALCULATE([Total_Facturado_2025]))</li>
+        <li>Total_Facturado = SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado])</li>
+        <li>Total_Facturado_2024 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2024)</li>
+        <li>Total_Facturado_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[precio_x_ton_facturado]),Calendario[año]=2025)</li>
+        <li>TOTAL_FACTURADO_PM = CALCULATE([Total_Facturado],DATEADD(Calendario[x. fechas],-1,MONTH))</li>
+        <li>TOTAL_TONELADAS_2025 = CALCULATE(SUM('DVG4 tb_ventas_x_producto1'[cantdidad_ton]),Calendario[año]=2025)</li>
+    </ul>
 
+    <!-- 5. CAPA DE PRESENTACIÓN (H2) -->
+    <h2>Capa de presentación</h2>
+    <p class="text-justify">
+        La capa de presentación constituye la fase final de la información procesada del Business Case de la empresa
+        <strong>Gold Coffee Export SAC</strong>, donde la información se transforma en conocimiento accionable listo
+        para la toma de decisiones.
+    </p>
+    <p class="text-justify">
+        Esta capa utiliza herramientas de visualización avanzadas, como Power BI y Microsoft Fabric, para convertir los
+        datos en un recurso estratégico y operativo de alto valor, sintetizando mediante interfaces intuitivas y análisis
+        visual para generar un impacto directo en la toma de decisiones.
+    </p>
+    <p class="text-justify">
+        La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo
+        un modelo de datos robusto. Sus principales componentes son:
+    </p>
+    <ul class="list-disc ml-6 text-cream/90">
+        <li><strong>Business Case:</strong> Se desarrolla el objetivo, la estrategia y costo beneficio.</li>
+        <li><strong>Definición del KPI (Key Performance Indicator):</strong> Incluye la definición precisa, la fórmula de cálculo y sus características esenciales.</li>
+        <li><strong>Dashboard:</strong> Vista integral del KPI.</li>
+        <li><strong>Reporte del KPI:</strong> Proporciona un análisis del KPI en un periodo de tiempo específico. En este caso, se proyecta la visualización histórica y tendencial desde Junio de 2025 hasta Mayo de 2027.</li>
+        <li><strong>KPQ (Key Performance Questions):</strong> Desarrollo de reportes analíticos que responden a las preguntas clave de rendimiento.</li>
+    </ul>
+
+    <div class="galeria">
+        <!-- 5.1. HOJA DE PRESENTACIÓN (H3) -->
+        <h3>Hoja de presentación</h3>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="parte1/imagen01.jpg" alt="Hoja de presentación" class="hidden">
+        </div>
+
+        <!-- 5.2. BUSINESS CASE (H3) -->
+        <h3>Business case</h3>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="parte1/imagen02.jpg" alt="Business Case" class="hidden">
+        </div>
+
+        <!-- 5.3. DEFINICIÓN DEL KPI (H3) -->
+        <h3>Definición del kpi (key performance indicator)</h3>
+        <div class="img-block">
+            <div class="image-placeholder">
+                [Image of Definición de KPI]
+            </div>
+            <img src="parte1/imagen03.jpg" alt="Definición KPI" class="hidden">
+        </div>
+
+        <!-- 5.4. DASHBOARD (H3) -->
+        <h3>Dashboard</h3>
+        <div class="img-block">
+            <div class="image-placeholder">
+                [Image of Dashboard Principal de Power BI]
+            </div>
+            <img src="parte1/imagen04.jpg" alt="Dashboard" class="hidden">
+        </div>
+
+        <!-- 5.5. REPORTE DEL KPI (H3) -->
+        <h3>Reporte del kpi</h3>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="parte1/imagen05.jpg" alt="Reporte KPI" class="hidden">
+        </div>
+
+        <!-- 5.6. KPQ (H3) -->
+        <h3>Kpq (key performance questions)</h3>
+        
+        <!-- 5.6.1. PREGUNTA 1 (H4) -->
+        <h4>Pregunta 1</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="parte2/pregunta1.0.jpg" alt="KPQ 1" class="hidden">
+            <img src="parte2/pregunta1.1.jpg" alt="KPQ 1.1" class="hidden">
+            <img src="parte2/pregunta1.2.jpg" alt="KPQ 1.2" class="hidden">
+        </div>
+
+        <!-- 5.6.2. PREGUNTA 2 (H4) -->
+        <h4>Pregunta 2</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta2.jpg" alt="KPQ 2" class="hidden">
+            <img src="pregunta2.1.jpg" alt="KPQ 2.1" class="hidden">
+            <img src="pregunta2.2.jpg" alt="KPQ 2.2" class="hidden">
+        </div>
+
+        <!-- 5.6.3. PREGUNTA 3 (H4) -->
+        <h4>Pregunta 3</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta3.jpg" alt="KPQ 3" class="hidden">
+            <img src="pregunta3.1.jpg" alt="KPQ 3.1" class="hidden">
+            <img src="pregunta3.2.jpg" alt="KPQ 3.2" class="hidden">
+        </div>
+
+        <!-- 5.6.4. PREGUNTA 4 (H4) -->
+        <h4>Pregunta 4</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta4.jpg" alt="KPQ 4" class="hidden">
+        </div>
+
+        <!-- 5.6.5. PREGUNTA 5 (H4) -->
+        <h4>Pregunta 5</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta5.jpg" alt="KPQ 5" class="hidden">
+            <img src="pregunta5.1.jpg" alt="KPQ 5.1" class="hidden">
+            <img src="pregunta5.2.jpg" alt="KPQ 5.2" class="hidden">
+        </div>
+
+        <!-- 5.6.6. PREGUNTA 6 (H4) -->
+        <h4>Pregunta 6</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta6.jpg" alt="KPQ 6" class="hidden">
+            <img src="pregunta6.1.jpg" alt="KPQ 6.1" class="hidden">
+            <img src="pregunta6.2.jpg" alt="KPQ 6.2" class="hidden">
+        </div>
+
+        <!-- 5.6.7. PREGUNTA 7 (H4) -->
+        <h4>Pregunta 7</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta7.jpg" alt="KPQ 7" class="hidden">
+            <img src="pregunta7.1.jpg" alt="KPQ 7.1" class="hidden">
+            <img src="pregunta7.2.jpg" alt="KPQ 7.2" class="hidden">
+        </div>
+
+        <!-- 5.6.8. PREGUNTA 8 (H4) -->
+        <h4>Pregunta 8</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta8.jpg" alt="KPQ 8" class="hidden">
+        </div>
+
+        <!-- 5.6.9. PREGUNTA 9 (H4) -->
+        <h4>Pregunta 9</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta9.jpg" alt="KPQ 9" class="hidden">
+        </div>
+
+        <!-- 5.6.10. PREGUNTA 10 (H4) -->
+        <h4>Pregunta 10</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="parte2/pregunta10.0.jpg" alt="KPQ 10.0" class="hidden">
+            <img src="pregunta10.1.jpg" alt="KPQ 10.1" class="hidden">
+            <img src="pregunta10.2.jpg" alt="KPQ 10.2" class="hidden">
+        </div>
+
+        <!-- 5.6.11. PREGUNTA 11 (H4) -->
+        <h4>Pregunta 11</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta11.jpg" alt="KPQ 11" class="hidden">
+            <img src="pregunta11.1.jpg" alt="KPQ 11.1" class="hidden">
+            <img src="pregunta11.2.jpg" alt="KPQ 11.2" class="hidden">
+        </div>
+
+        <!-- 5.6.12. PREGUNTA 12 (H4) -->
+        <h4>Pregunta 12</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta12.jpg" alt="KPQ 12" class="hidden">
+        </div>
+
+        <!-- 5.6.13. PREGUNTA 13 (H4) -->
+        <h4>Pregunta 13</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta13.jpg" alt="KPQ 13" class="hidden">
+            <img src="pregunta13.1.jpg" alt="KPQ 13.1" class="hidden">
+            <img src="pregunta13.2.jpg" alt="KPQ 13.2" class="hidden">
+        </div>
+
+        <!-- 5.6.14. PREGUNTA 14 (H4) -->
+        <h4>Pregunta 14</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta14.jpg" alt="KPQ 14" class="hidden">
+        </div>
+
+        <!-- 5.6.15. PREGUNTA 15 (H4) -->
+        <h4>Pregunta 15</h4>
+        <div class="img-block">
+            <div class="image-placeholder">
+                
+            </div>
+            <img src="pregunta15.jpg" alt="KPQ 15" class="hidden">
+            <img src="pregunta15.1.jpg" alt="KPQ 15.1" class="hidden">
+            <img src="pregunta15.2.jpg" alt="KPQ 15.2" class="hidden">
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
 
