@@ -341,7 +341,7 @@
     <!-- 3.1. DATA FLOWS (H3) -->
     <h3>Dataflows</h3>
     <p class="text-justify">
-        Se realizó la importación de las tablas creadas con los datos insertados desde el SQL de DVG04, los cuales han sido almacenados en el Warehouse de Fabric.
+        Se realizó la importación de las tablas previamente creadas y pobladas en el SQL, las cuales son ingeridas mediante Dataflows y posteriormente almacenadas en el Data Warehouse de Microsoft Fabric. Este procedimiento garantiza la integración y disponibilidad de los datos para su consumo en modelos analíticos y posteriores tareas de transformación.
     </p>
     <div class="img-block">
         <img src="dataflow.jpg" alt="Dataflow de Microsoft Fabric">
@@ -507,8 +507,8 @@
         visual para generar un impacto directo en la toma de decisiones.
     </p>
     <p class="text-justify">
-        La capa se nutre de los datos provenientes del Data Warehouse, los cuales han sido previamente estructurados bajo
-        un modelo de datos robusto. Sus principales componentes son:
+        La capa se alimenta de datos ya consolidados y organizados bajo un modelo de datos, a fin de efectuar su explotación analítica. 
+        Sus principales componentes son:
     </p>
     <ul class="list-disc ml-6 text-cream/90">
         <li><strong>Business Case:</strong> Se desarrolla el objetivo, la estrategia y el costo beneficio.</li>
