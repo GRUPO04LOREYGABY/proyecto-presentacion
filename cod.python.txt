@@ -1,0 +1,155 @@
+# =====================================
+# CONFIGURACIÓN JDBC SQL SERVER
+# =====================================
+
+jdbc_hostname = "pucp.database.windows.net"
+jdbc_port = 1433
+jdbc_database = "pucp"
+
+jdbc_url = (
+    f"jdbc:sqlserver://{jdbc_hostname}:{jdbc_port};"
+    f"database={jdbc_database};encrypt=true;"
+    f"trustServerCertificate=false;"
+    f"hostNameInCertificate=*.database.windows.net;"
+    f"loginTimeout=30;"
+)
+
+connection_properties = {
+    "user": "pucp",
+    "password": "$%#ErP%#w",
+    "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+}
+
+# =====================================
+# TABLAS A CARGAR
+# =====================================
+
+table_names = [
+    "DVG4.tb_clientes1",
+    "DVG4.tb_colaboradores_staging1",
+    "DVG4.tb_colaboradores1",
+    "DVG4.tb_compras_staging1",
+    "DVG4.tb_compras1",
+    "DVG4.tb_envios_staging1",
+    "DVG4.tb_envios1",
+    "DVG4.tb_estado_envio1",
+    "DVG4.tb_estado_envios_staging1",
+    "DVG4.tb_mercado_mensual_staging1",
+    "DVG4.tb_mercado_mensual1",
+    "DVG4.tb_paises_staging1",
+    "DVG4.tb_paises1",
+    "DVG4.tb_producto1",
+    "DVG4.tb_productos_staging1",
+    "DVG4.tb_proveedor_envio1",
+    "DVG4.tb_proveedores_envios_staging1",
+    "DVG4.tb_puertos_staging1",
+    "DVG4.tb_puertos1",
+    "DVG4.tb_tipo_cliente_staging1",
+    "DVG4.tb_tipo_cliente1",
+    "DVG4.tb_tipo_colaborador_staging1",
+    "DVG4.tb_tipo_colaborador1",
+    "DVG4.tb_ventas_staging1",
+    "DVG4.tb_ventas_x_producto_staging1",
+    "DVG4.tb_ventas_x_producto1",
+    "DVG4.tb_ventas1"
+]
+
+# =====================================
+# CARGAR TABLAS
+# =====================================
+
+dfs = {}
+print("Cargando tablas desde Azure SQL...\n")
+
+for table in table_names:
+    try:
+        df = spark.read.jdbc(
+            url=jdbc_url,
+            table=table,
+            properties=connection_properties
+        )
+        dfs[table] = df
+        print(f"✔ Tabla cargada: {table} | Filas: {df.count()}")
+    except Exception as e:
+        print(f"❌ Error cargando {table}: {e}")
+
+# ============================================================
+#   OBTENER LAS ÚLTIMAS 5 VENTAS
+# ============================================================
+
+from pyspark.sql.functions import col, sum as _sum
+
+df_ventas = dfs["DVG4.tb_ventas1"]
+
+# Mostrar esquema para confirmar
+df_ventas.printSchema()
+
+# columna correcta:
+columna_fecha = "fecha_de_venta"
+
+# Ordenar y obtener últimas 5
+df_ultimas_5 = (
+    df_ventas
+    .orderBy(col(columna_fecha).desc())
+    .limit(5)
+)
+
+print("\nÚltimas 5 ventas:")
+display(df_ultimas_5)
+
+
+
+# ============================================================
+
+
+
+# ============================================================
+#   GUARDAR EL REPORTE EN ONELAKE (SIN LAKEHOUSE)
+# ============================================================
+
+import pandas as pd
+from datetime import datetime
+import os
+
+# Convertir las últimas 5 ventas a pandas
+pdf_ultimas5 = df_ultimas_5.toPandas()
+
+# Carpeta en OneLake accesible desde cualquier notebook/fabric
+onelake_folder = "/lakehouse/default/files/"
+
+# Asegurar que exista
+os.makedirs(onelake_folder, exist_ok=True)
+
+nombre_archivo = f"reporte_ultimas_5_ventas_{datetime.now().strftime('%Y%m%d_%H%M')}.xlsx"
+ruta_archivo = os.path.join(onelake_folder, nombre_archivo)
+
+# Guardar Excel
+pdf_ultimas5.to_excel(ruta_archivo, index=False)
+
+print("✔ Archivo guardado en OneLake")
+print("Ruta:", ruta_archivo)
+
+display(pdf_ultimas5)
+
+
+
+
+#-----------------------------------------------
+
+
+# ============================================================
+#   EXPORTAR LAS ÚLTIMAS 5 VENTAS A CSV DESCARGABLE
+# ============================================================
+
+import pandas as pd
+
+# Convertir Spark DF → Pandas DF
+pdf_ultimas_5 = df_ultimas_5.toPandas()
+
+# Ruta donde guardarás el archivo dentro del notebook
+ruta_csv = "ultimas_5_ventas.csv"
+
+# Guardar CSV
+pdf_ultimas_5.to_csv(ruta_csv, index=False, encoding='utf-8')
+
+print(f"Archivo CSV generado: {ruta_csv}")
