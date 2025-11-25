@@ -437,6 +437,52 @@
     <p class="text-justify">
         Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Se integran con Microsoft Fabric para mantener el flujo de datos actualizado.
     </p>
+     <h4>NOTEBOOK PYTHON</h4>
+    <div class="img-block">
+        <img src="pit1.jpg" alt="Notebook python 1">
+    </div>
+    <div class="img-block">
+        <img src="pit2.jpg" alt="Notebook python 2">
+    </div>
+    <div class="img-block">
+        <img src="pit3.jpg" alt="Notebook python 3">
+    </div>
+    <div class="img-block">
+        <img src="pit4.jpg" alt="Notebook python 4">
+    </div>
+    <div class="img-block">
+        <img src="pit5.jpg" alt="Notebook python 5">
+    </div>
+    <div class="img-block">
+        <img src="pit6.jpg" alt="Notebook python 6">
+    </div>
+        <div class="info-card flex flex-col sm:flex-row sm:items-center gap-4">
+        <!-- El flex-shrink-0 asegura que el texto no se comprima y el sm:mr-4 da espacio en desktop -->
+        <p class="text-lg font-bold text-gold-accent mb-0 sm:mr-4 flex-shrink-0">Código de Python:</p>
+        <!-- Contenedor flex para los botones, forzando la fila en desktop y permitiendo wrap en mobile -->
+        <div class="flex flex-wrap gap-4"> 
+            <button class="btn" onclick="cargarTXT('cod.python.txt')">📄 </button>
+        </div>
+    </div>
+
+    <!-- Visor de texto -->
+    <pre id="visorTXT" class="mt-4"></pre>
+    
+    <script>
+        // Función original de carga de texto
+        function cargarTXT(ruta) {
+            fetch(ruta)
+                .then(resp => resp.text())
+                .then(texto => {
+                    document.getElementById("visorTXT").textContent = texto;
+                    // Desplazar a la vista del visor para mejor UX
+                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(err => {
+                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
+                });
+        }
+    </script>
 
     <!-- 4. CAPA DE ALMACENAMIENTO (H2) -->
     <h2>Capa de almacenamiento</h2>
