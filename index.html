@@ -287,36 +287,21 @@
 
     <!-- 2.1. ARCHIVOS RELACIONADOS (H3) -->
     <h3>Archivos relacionados</h3>
-    <!-- FIX 2: Restructuración para alineación de botones en desktop -->
+    <!-- FIX: Se añade el ID de visor para la función JS -->
     <div class="info-card flex flex-col sm:flex-row sm:items-center gap-4">
         <!-- El flex-shrink-0 asegura que el texto no se comprima y el sm:mr-4 da espacio en desktop -->
         <p class="text-lg font-bold text-gold-accent mb-0 sm:mr-4 flex-shrink-0">Archivos SQL:</p>
         <!-- Contenedor flex para los botones, forzando la fila en desktop y permitiendo wrap en mobile -->
-        <div class="flex flex-wrap gap-4"> 
-            <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt')">📄 Creación de Tablas</button>
-            <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt')">📄 Relación de Tablas</button>
-            <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt')">📄 Inserción Datos Maestros</button>
+        <div class="flex flex-wrap gap-4"> 
+            <!-- Se pasa 'visorSQL' como el ID de destino -->
+            <button class="btn" onclick="cargarTXT('CÓDIGO CREACIÓN DE TABLAS.txt', 'visorSQL')">📄 Creación de Tablas</button>
+            <button class="btn" onclick="cargarTXT('CÓDIGO DE RELACIÓN DE LAS TABLAS.txt', 'visorSQL')">📄 Relación de Tablas</button>
+            <button class="btn" onclick="cargarTXT('CÓDIGO DE INSERCIÓN DE DATOS.txt', 'visorSQL')">📄 Inserción Datos Maestros</button>
         </div>
     </div>
 
-    <!-- Visor de texto -->
-    <pre id="visorTXT" class="mt-4"></pre>
-    
-    <script>
-        // Función original de carga de texto
-        function cargarTXT(ruta) {
-            fetch(ruta)
-                .then(resp => resp.text())
-                .then(texto => {
-                    document.getElementById("visorTXT").textContent = texto;
-                    // Desplazar a la vista del visor para mejor UX
-                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
-                })
-                .catch(err => {
-                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
-                });
-        }
-    </script>
+    <!-- Visor de texto de SQL: ID ÚNICO -->
+    <pre id="visorSQL" class="visor-txt"></pre>
     
     <!-- 2.1.1. TABLAS DEL SISTEMA EN SQL (H4) -->
     <h4>TABLAS DEL SISTEMA EN SQL</h4>
@@ -456,33 +441,20 @@
     <div class="img-block">
         <img src="pit6.jpg" alt="Notebook python 6">
     </div>
-        <div class="info-card flex flex-col sm:flex-row sm:items-center gap-4">
+    
+     <!-- FIX: Se añade el ID de visor para la función JS -->
+    <div class="info-card flex flex-col sm:flex-row sm:items-center gap-4">
         <!-- El flex-shrink-0 asegura que el texto no se comprima y el sm:mr-4 da espacio en desktop -->
         <p class="text-lg font-bold text-gold-accent mb-0 sm:mr-4 flex-shrink-0">Código de Python:</p>
         <!-- Contenedor flex para los botones, forzando la fila en desktop y permitiendo wrap en mobile -->
-        <div class="flex flex-wrap gap-4"> 
-            <button class="btn" onclick="cargarTXT('cod.python.txt')">📄 </button>
+        <div class="flex flex-wrap gap-4"> 
+            <!-- Se pasa 'visorPython' como el ID de destino -->
+            <button class="btn" onclick="cargarTXT('cod.python.txt', 'visorPython')">📄 cod.python.txt</button>
         </div>
     </div>
 
-    <!-- Visor de texto -->
-    <pre id="visorTXT" class="mt-4"></pre>
-    
-    <script>
-        // Función original de carga de texto
-        function cargarTXT(ruta) {
-            fetch(ruta)
-                .then(resp => resp.text())
-                .then(texto => {
-                    document.getElementById("visorTXT").textContent = texto;
-                    // Desplazar a la vista del visor para mejor UX
-                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
-                })
-                .catch(err => {
-                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
-                });
-        }
-    </script>
+    <!-- Visor de texto de Python: ID ÚNICO -->
+    <pre id="visorPython" class="visor-txt"></pre>
 
     <!-- 4. CAPA DE ALMACENAMIENTO (H2) -->
     <h2>Capa de almacenamiento</h2>
@@ -711,5 +683,48 @@
 
     </div>
 </div>
+<script>
+    /**
+     * Carga el contenido de un archivo TXT en un visor específico y desplaza la vista hacia él.
+     * @param {string} ruta - La ruta del archivo TXT (e.g., 'cod.python.txt').
+     * @param {string} idVisor - El ID del elemento <pre> donde se mostrará el texto (e.g., 'visorSQL').
+     */
+    function cargarTXT(ruta, idVisor) {
+        // Obtenemos el elemento visor
+        const visor = document.getElementById(idVisor);
+        
+        // Verificamos si el visor existe
+        if (!visor) {
+            console.error("El visor con ID '" + idVisor + "' no fue encontrado.");
+            return;
+        }
+
+        // Indicamos que se está cargando el archivo
+        visor.textContent = "Cargando archivo " + ruta + "...";
+
+        // Usamos fetch para obtener el contenido del archivo
+        fetch(ruta)
+            .then(resp => {
+                if (!resp.ok) {
+                    // Si la respuesta no es OK (ej: 404 Not Found)
+                    throw new Error(`Error al cargar el archivo: ${resp.status} ${resp.statusText}`);
+                }
+                return resp.text();
+            })
+            .then(texto => {
+                // Rellenamos el visor con el texto
+                visor.textContent = texto;
+                
+                // Desplazamos a la vista del visor para mejor UX.
+                // 'start' asegura que el visor se alinee con el borde superior del viewport, 
+                // resolviendo el problema del scroll.
+                visor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            })
+            .catch(err => {
+                // Si hay un error (ej: archivo no encontrado)
+                visor.textContent = "⚠ No se pudo cargar el archivo: " + ruta + ". Detalle: " + err.message;
+            });
+    }
+</script>
 </body>
 </html>
