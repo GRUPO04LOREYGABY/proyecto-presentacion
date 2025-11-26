@@ -314,19 +314,13 @@
     <p class="text-justify">
         La Capa ETL comprende la documentación relacionada con los dataflows creados, los pipelines y la automatización en Python.
     </p>
-    <p class="text-justify">
-        La Data Pipeline en ETL se ejecuta en los siguientes pasos:
-    </p>
-    <ol class="list-decimal ml-6 text-cream/90">
-        <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes.</li>
-        <li><strong>Transform (Transformación):</strong> Los datos son procesados y transformados.</li>
-        <li><strong>Load (Carga):</strong> Finalmente, los datos transformados son cargados en el repositorio de destino.</li>
-    </ol>
-
+    
     <!-- 3.1. DATA FLOWS (H3) -->
     <h3>Dataflows</h3>
     <p class="text-justify">
-        Se realizó la importación de las tablas previamente creadas y pobladas en el SQL, las cuales son ingeridas mediante Dataflows y posteriormente almacenadas en el Data Warehouse, DVG4, de Microsoft Fabric. Este procedimiento garantiza la integración y disponibilidad de los datos para su consumo en modelos analíticos y posteriores tareas de transformación.
+        Se realizó la importación de las tablas previamente creadas y pobladas en el SQL, las cuales son ingeridas mediante Dataflows y posteriormente almacenadas en el Data Warehouse, DVG4, de Microsoft Fabric. 
+        Este procedimiento garantiza la integración y disponibilidad de los datos para su consumo en modelos analíticos y posteriores tareas de transformación.
+        Los Dataflows de Microsoft Fabric fueron utilizados para orquestar la ingesta inicial de las tablas desde la fuente operacional.
     </p>
     <div class="img-block">
         <img src="dataflow.jpg" alt="Dataflow de Microsoft Fabric">
@@ -418,12 +412,39 @@
     </div>
 
     <!-- 3.2. PIPELINES Y AUTOMATIZACIÓN (H3) -->
-    <h3>Pipelines y automatización</h3>
+    <h3>PIPELINES</h3>
     <p class="text-justify">
-        Los pipelines fueron automatizados utilizando Python, permitiendo la ejecución periódica de los procesos ETL sin intervención manual. Se integran con Microsoft Fabric para mantener el flujo de datos actualizado.
+        La Data Pipeline en ETL se ejecuta en los siguientes pasos:
     </p>
-     <h4>NOTEBOOK PYTHON</h4>
-    <div class="img-block">
+    <ol class="list-decimal ml-6 text-cream/90">
+        <li><strong>Extract (Extracción):</strong> El pipeline recoge datos de diferentes fuentes.</li>
+        <li><strong>Load (Carga):</strong> Los datos brutos son cargados inmediatamente en el repositorio de destino.</li>
+        <li><strong>Transform (Transformación):</strong> Los datos ya cargados son procesados y transformados usando la potencia del motor del destino (PySpark en Fabric).</li>
+    </ol>
+
+     <h3>AUTOMATIZACIÓN CON NOTEBOOK PYTHON</h3>
+    <p class="text-justify">
+        El Notebook Python documentado a continuación es el mecanismo de Automatización ELT que se ejecuta para tareas específicas de carga y reporte.
+    </p>
+
+    <p class="text-justify">
+       <strong>Proceso del código</strong>: El código utiliza PySpark para una doble función estratégica sin depender de la reescritura de las líneas de código:
+    </p>
+    <ol class="list-decimal ml-6 text-cream/90">
+        <li><strong>Carga Crítica (E & L):</strong>  Se conecta a la base de datos Azure SQL usando JDBC y trae las 27 tablas al entorno de Spark, cargando los datos de forma masiva y rápida.</li>
+        <li><strong>Generación de Reporte (T):</strong> Ejecuta una Transformación clave sobre la tabla de ventas, aplicando lógica de ordenamiento por fecha y filtrando para obtener solamente las Últimas 5 Ventas registradas.</li>
+       </ol>
+
+     <p class="text-justify">
+       <strong>Resultado Final y Distribución</strong>: El resultado final es un Reporte Operacional listo para el consumo y con dos puntos de acceso:
+    </p>
+    <ol class="list-decimal ml-6 text-cream/90">
+        <li><strong>Persistencia en OneLake:</strong>  El reporte transformado es guardado en formato Excel en OneLake de Fabric.</li>
+        <li><strong>Consumo Inmediato:</strong> Se genera una copia en formato CSV descargable, permitiendo a los analistas puedan tomar las últimas 5 ventas al instante y usarlas en sus cálculos de forecast.</li>
+       </ol>
+    
+    <h4>NOTEBOOK PYTHON</h4>
+       <div class="img-block">
         <img src="pit1.jpg" alt="Notebook python 1">
     </div>
     <div class="img-block">
