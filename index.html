@@ -250,23 +250,25 @@
     <div class="img-block">
         <img src="diagrama.jpg" alt="Diagrama de arquitectura de Gold Coffee Exports"> 
     </div>
-    <!-- DESCRIPCIÓN INSERTADA AQUÍ -->
     <h3>Descripción de Fases del Proceso</h3>
-    <ul>
+     <ul class="list-disc ml-6 text-cream/90">
         <li>
             <strong>Creación de los Datos:</strong> Es la fase inicial donde se generan o simulan los datasets de la compañía (ventas, clientes, proveedores, colaboradores, mercado mensual, entre otros). Se utiliza una herramienta auxiliar para poblar y asegurar la integridad de los datos iniciales.
         </li>
         <li>
             <strong>Armado de la Base de Datos en SQL:</strong> La información se carga y almacena centralmente en SQL Server, el cual se establece como la Fuente Operacional definitiva del proyecto. Todas las herramientas de análisis posteriores se conectan a este punto. 
-            <!-- Sub-puntos con lista anidada -->
-            <ul>
-                <li>
-                    <strong>Estructuración de Datos Fuente:</strong> Creación de la estructura de tablas y carga de los datos necesarios, asegurando su organización en el servidor SQL.
-                </li>
-                <li>
-                    <strong>Automatización ELT:</strong> La automatización ELT consiste en programar la importación rápida de los datos brutos desde las fuentes de origen hacia el OneLake central. Un motor de procesamiento se ejecuta para transformar estos datos, aplicando la lógica de negocio necesaria para el análisis. 
-                </li>
-            </ul>
+
+            <!-- Sub-procesos de Armado de BD en SQL (Presentados sin sangría de lista anidada) -->
+            <div class="mt-4 mb-4 p-4 border border-gold-accent/50 rounded-lg bg-coffee-card/70">
+                <h4 class="!mt-0 !mb-2 !p-0 !border-none !bg-transparent text-base font-bold text-system-blue/90">Sub-procesos:</h4>
+                
+                <p class="mb-2 pl-3 border-l-4 border-gold-accent/80 text-sm">
+                    <strong class="text-cream">Estructuración de Datos Fuente:</strong> Creación de la estructura de tablas y carga de los datos necesarios, asegurando su organización en el servidor SQL.
+                </p>
+                <p class="mb-0 pl-3 border-l-4 border-gold-accent/80 text-sm">
+                    <strong class="text-cream">Automatización ELT:</strong> La automatización ELT consiste en programar la importación rápida de los datos brutos desde las fuentes de origen hacia el OneLake central. Un motor de procesamiento se ejecuta para transformar estos datos, aplicando la lógica de negocio necesaria para el análisis.
+                </p>
+            </div>
         </li>
         <li>
             <strong>Modelado de los Datos en SQL y Power BI:</strong> Se utiliza Power BI para construir el Modelo de Datos Analítico. Esto incluye crear las relaciones necesarias entre las tablas y calcular las métricas (measures) clave usando el lenguaje DAX.
