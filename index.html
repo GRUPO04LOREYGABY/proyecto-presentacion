@@ -302,38 +302,21 @@
     <!-- Visor de texto -->
     <pre id="visorTXT" class="mt-4"></pre>
     
-  <script>
-    /**
-     * Carga el contenido de un archivo .txt y lo inyecta en el visor especificado.
-     * @param {string} ruta - La ruta del archivo de texto.
-     * @param {string} idVisor - El ID del elemento <pre> donde se mostrará el texto.
-     */
-    function cargarTXT(ruta, idVisor) {
-        // 1. Obtener la referencia al visor de destino usando el ID
-        const visor = document.getElementById(idVisor);
-        
-        // 2. Verificar si el visor existe (seguridad)
-        if (!visor) {
-            console.error("El contenedor con ID: " + idVisor + " no fue encontrado.");
-            return;
+    <script>
+        // Función original de carga de texto
+        function cargarTXT(ruta) {
+            fetch(ruta)
+                .then(resp => resp.text())
+                .then(texto => {
+                    document.getElementById("visorTXT").textContent = texto;
+                    // Desplazar a la vista del visor para mejor UX
+                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(err => {
+                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
+                });
         }
-
-        // 3. Realizar la solicitud de archivo (fetch)
-        fetch(ruta)
-            .then(resp => resp.text())
-            .then(texto => {
-                // 4. Inyectar el texto en el visor correcto
-                visor.textContent = texto; 
-                
-                // 5. Desplazar la vista al visor
-                visor.scrollIntoView({ behavior: 'smooth' });
-            })
-            .catch(err => {
-                // Manejar el error de carga
-                visor.textContent = "⚠ No se pudo cargar el archivo: " + ruta;
-            });
-    }
-</script>
+    </script>
     
     <!-- 2.1.1. TABLAS DEL SISTEMA EN SQL (H4) -->
     <h4>TABLAS DEL SISTEMA EN SQL</h4>
@@ -486,37 +469,20 @@
     <pre id="visorTXT" class="mt-4"></pre>
     
     <script>
-    /**
-     * Carga el contenido de un archivo .txt y lo inyecta en el visor especificado.
-     * @param {string} ruta - La ruta del archivo de texto.
-     * @param {string} idVisor - El ID del elemento <pre> donde se mostrará el texto.
-     */
-    function cargarTXT(ruta, idVisor) {
-        // 1. Obtener la referencia al visor de destino usando el ID
-        const visor = document.getElementById(idVisor);
-        
-        // 2. Verificar si el visor existe (seguridad)
-        if (!visor) {
-            console.error("El contenedor con ID: " + idVisor + " no fue encontrado.");
-            return;
+        // Función original de carga de texto
+        function cargarTXT(ruta) {
+            fetch(ruta)
+                .then(resp => resp.text())
+                .then(texto => {
+                    document.getElementById("visorTXT").textContent = texto;
+                    // Desplazar a la vista del visor para mejor UX
+                    document.getElementById("visorTXT").scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(err => {
+                    document.getElementById("visorTXT").textContent = "⚠ No se pudo cargar el archivo: " + ruta;
+                });
         }
-
-        // 3. Realizar la solicitud de archivo (fetch)
-        fetch(ruta)
-            .then(resp => resp.text())
-            .then(texto => {
-                // 4. Inyectar el texto en el visor correcto
-                visor.textContent = texto; 
-                
-                // 5. Desplazar la vista al visor
-                visor.scrollIntoView({ behavior: 'smooth' });
-            })
-            .catch(err => {
-                // Manejar el error de carga
-                visor.textContent = "⚠ No se pudo cargar el archivo: " + ruta;
-            });
-    }
-</script>
+    </script>
 
     <!-- 4. CAPA DE ALMACENAMIENTO (H2) -->
     <h2>Capa de almacenamiento</h2>
