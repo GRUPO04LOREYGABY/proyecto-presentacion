@@ -250,6 +250,35 @@
     <div class="img-block">
         <img src="diagrama.jpg" alt="Diagrama de arquitectura de Gold Coffee Exports"> 
     </div>
+    <!-- DESCRIPCIÓN INSERTADA AQUÍ -->
+    <h3>Descripción de Fases del Proceso</h3>
+    <ul>
+        <li>
+            <strong>Creación de los Datos:</strong> Es la fase inicial donde se generan o simulan los datasets de la compañía (ventas, clientes, proveedores, colaboradores, mercado mensual, entre otros). Se utiliza una herramienta auxiliar para poblar y asegurar la integridad de los datos iniciales.
+        </li>
+        <li>
+            <strong>Armado de la Base de Datos en SQL:</strong> La información se carga y almacena centralmente en SQL Server, el cual se establece como la Fuente Operacional definitiva del proyecto. Todas las herramientas de análisis posteriores se conectan a este punto. 
+            <!-- Sub-puntos con lista anidada -->
+            <ul>
+                <li>
+                    <strong>Estructuración de Datos Fuente:</strong> Creación de la estructura de tablas y carga de los datos necesarios, asegurando su organización en el servidor SQL.
+                </li>
+                <li>
+                    <strong>Automatización ELT:</strong> La automatización ELT consiste en programar la importación rápida de los datos brutos desde las fuentes de origen hacia el OneLake central. Un motor de procesamiento se ejecuta para transformar estos datos, aplicando la lógica de negocio necesaria para el análisis. 
+                </li>
+            </ul>
+        </li>
+        <li>
+            <strong>Modelado de los Datos en SQL y Power BI:</strong> Se utiliza Power BI para construir el Modelo de Datos Analítico. Esto incluye crear las relaciones necesarias entre las tablas y calcular las métricas (measures) clave usando el lenguaje DAX.
+        </li>
+        <li>
+            <strong>Diseño y Armado de la Presentación en Power BI y Fabric:</strong> Se construye el dashboard del KPI y los reportes finales, este paso garantiza que las visualizaciones respondan directamente a los KPQ (Key Performance Questions).
+        </li>
+        <li>
+            <strong>El Usuario Final:</strong> El usuario interactúa con el dashboard del KPI y los reportes finales para extraer insights y fundamentar la toma de decisiones, así como la entrega del resultado transformado del proceso ETL, asegurando que la información esté siempre actualizada y disponible.
+        </li>
+    </ul>
+    <!-- FIN DE LA DESCRIPCIÓN INSERTADA -->
     
     <!-- 2. CAPA DE DATOS (H2) -->
     <h2>Capa de datos</h2>
